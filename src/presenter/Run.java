@@ -7,7 +7,7 @@ public class Run {
         Inventory inv = new Inventory();
         inv.splitIngredients();
         inv.totalDatos();
-        new InventoryPresenter().menu();
+
 
     }
 }
