@@ -2,10 +2,7 @@ package views;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
-import javax.imageio.ImageIO;
+
 
 public class LogInView extends JFrame {
 
@@ -28,7 +25,6 @@ public class LogInView extends JFrame {
         usernameTextField = new JTextField();
         passwordField = new JPasswordField();
         submitButton = new JButton("Submit");
-
 
         icon = new ImageIcon("src/resources/logo-dogzilla-01.png");
         icon = resizeImage.resize(icon, 200, 200);

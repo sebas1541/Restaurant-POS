@@ -11,7 +11,6 @@ public class Inventory {
         ingredientList = new ArrayList<>();
     }
 
-    // Use Dependency Injection for better flexibility
     public void splitIngredients(Persistence persistence) {
         String file = persistence.readIngredientsFile();
         String[] lineIng = file.split("\n");
