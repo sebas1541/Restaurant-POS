@@ -171,12 +171,15 @@ public class MainWindow extends JFrame {
 
         //Order Button
 
+        JButton orderOptionButton = new JButton();
+
         orderOption = new JPanel();
+        orderOptionButton.add(orderOption);
         orderOption.setLayout(new BorderLayout());
 
         orderOptionImage = new ImageIcon("src/resources/OrderViewResources/LeftPanelIcons/Order Button Clicked.png");
         orderOptionImage = new ResizeImage().resize(orderOptionImage, 30,28);
-        orderOptionImageLabel = new JLabel(orderOptionImage);
+        orderOptionImageLabel = new JLabel(orderOptionImage); //va a ser un boton
 
         orderOptionText = new JLabel("ORDEN");
         orderOptionText.setForeground(new Color(236,90,90));
@@ -238,6 +241,34 @@ public class MainWindow extends JFrame {
         leftPanel.add(settingsOption, gbcLeftPanel);
 
         //Center Panel Styles-------------------------------------------------------------------------------------------
+
+
+
+
+
+        //Bottom Panel Styles-------------------------------------------------------------------------------------------
+
+        navigationPanelBottom = new JPanel();
+
+        GridBagConstraints gbcBottomPanel = new GridBagConstraints();
+        gbcBottomPanel.insets = new Insets(5,5,5,5);
+
+        navigationPanelBottom.setLayout(new GridBagLayout());
+        hotDogButton = new JButton("Perros");
+        additiveButton = new JButton("Aditivos");
+        drinkBUtton = new JButton("Bebidas");
+
+        gbcBottomPanel.gridx = 0;
+        navigationPanelBottom.add(hotDogButton, gbcBottomPanel);
+
+        gbcBottomPanel.gridx = 1;
+        navigationPanelBottom.add(additiveButton, gbcBottomPanel);
+
+        gbcBottomPanel.gridx = 2;
+        navigationPanelBottom.add(drinkBUtton, gbcBottomPanel);
+
+
+
 
 
 
