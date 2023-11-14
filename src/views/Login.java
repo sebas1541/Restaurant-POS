@@ -24,8 +24,10 @@ public class Login extends JPanel {
         createJButtonemployee(ac);
     }
     public void createJLabelIcon() {
-        ImageIcon ImgIcon = new ImageIcon("src/data/Icon.png");
+        ImageIcon ImgIcon = new ImageIcon("src/resources/Logos/logo-dogzilla-01.png");
+        ImgIcon = new ResizeImage().resize(ImgIcon,100,100 );
         icon = new JLabel(ImgIcon);
+
         icon.setBackground(Color.white);
         icon.setPreferredSize(new Dimension(100,100));
         gbc.insets = new Insets(0,0,50,0);
@@ -69,5 +71,8 @@ public class Login extends JPanel {
         gbc.gridy = 5;
         gbc.gridwidth = 1;
         this.add(adm, gbc);
+    }
+    public static void main(String[]args){
+        new View(null).createPanelLogin(null);
     }
 }
