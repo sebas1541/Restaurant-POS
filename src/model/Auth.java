@@ -18,7 +18,7 @@ public class Auth {
 
     public String authenticate(String username, String password) {
         User user = userList.get(username);
-        String salida = "";
+        String salida = null;
 
         if (user != null) {
             if (password != null && user.getPassword().equals(password)) {
@@ -50,10 +50,8 @@ public class Auth {
         Auth auth = new Auth();
         auth.addUser(user);
 
-
         System.out.println("User List:\n" + auth.getUserListString());
 
-
-        System.out.println(auth.authenticate("hola1234", "password1234"));
+        System.out.println(auth.authenticate("hola1234", "password123"));
     }
 }
