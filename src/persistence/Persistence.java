@@ -1,28 +1,29 @@
 package persistence;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 public class Persistence {
 
-    public String readIngredientsFile() {
-        String ruta = "src/data/Ingredients.txt";
-        StringBuilder sb = new StringBuilder();
+    public JsonArray readIngredientsFile() {
+        String filePath = "src/data/Ingredients.json";
+        JsonArray ingredientsArray = null;
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader(ruta));
-            String linea;
-
-            while ((linea = br.readLine()) != null) {
-                sb.append(linea).append("\n");
-            }
-
-            br.close();
-        } catch (IOException e) {
+            InputStream fis = new FileInputStream(filePath);
+            JsonReader reader = Json.createReader(fis);
+            JsonObject jsonObject = reader.readObject();
+            ingredientsArray = jsonObject.getJsonArray("ingredients");
+            reader.close();
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-        return sb.toString();
+        return ingredientsArray;
     }
 }

@@ -8,7 +8,6 @@ public class Login extends JPanel {
     private JButton employee;
     private JButton adm;
     private JLabel info;
-    private JLabel background;
     private JLabel icon;
     private GridBagConstraints gbc;
     public Login(ActionListener ac){
@@ -24,9 +23,9 @@ public class Login extends JPanel {
         createJButtonemployee(ac);
     }
     public void createJLabelIcon() {
-        ImageIcon ImgIcon = new ImageIcon("src/data/Icon.png");
+        ImageIcon ImgIcon = new ImageIcon("src/resources/Logos/logo-dogzilla-01.png");
+        ImgIcon = new ResizeImage().resize(ImgIcon,100,100 );
         icon = new JLabel(ImgIcon);
-        icon.setBackground(Color.white);
         icon.setPreferredSize(new Dimension(100,100));
         gbc.insets = new Insets(0,0,50,0);
         gbc.gridx = 0;

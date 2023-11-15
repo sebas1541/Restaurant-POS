@@ -1,0 +1,29 @@
+{
+    "ingredients": [
+        {"name": "Pan", "value": 20},
+        {"name": "Salchicha", "value": 20},
+        {"name": "Cebolla", "value": 20},
+        {"name": "Tomate", "value": 20},
+        {"name": "Papas Cabello de Angel", "value": 20},
+        {"name": "Jalapenos", "value": 20},
+        {"name": "Tostacos", "value": 20},
+        {"name": "Pepinillos", "value": 20},
+        {"name": "Salsa de Tomate", "value": 20},
+        {"name": "Salsa BBQ", "value": 20},
+        {"name": "Salsa Rosada", "value": 20},
+        {"name": "Salsa de Pina", "value": 20},
+        {"name": "Mostaza", "value": 20},
+        {"name": "Salsa Tartara", "value": 20},
+        {"name": "Salsa Mayo Mostaza", "value": 20},
+        {"name": "Mayonesa", "value": 20},
+        {"name": "Huevo Codorniz", "value": 20},
+        {"name": "Pina", "value": 20},
+        {"name": "Maiz Tierno", "value": 20},
+        {"name": "Queso Derretido", "value": 20},
+        {"name": "Queso Chedar", "value": 20},
+        {"name": "Pollo", "value": 20},
+        {"name": "Tocineta", "value": 20},
+        {"name": "Chile con Carne", "value": 20},
+        {"name": "Pepperoni", "value": 20}
+    ]
+}
