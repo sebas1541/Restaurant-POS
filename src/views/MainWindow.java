@@ -155,11 +155,8 @@ public class MainWindow extends JFrame {
         homeOptionImage = new ResizeImage().resize(homeOptionImage, 30,28);
         homeOptionImageLabel = new JLabel(homeOptionImage);
 
-        homeOptionText = new JLabel("INICIO");
-        homeOptionText.setForeground(new Color(189,189,189));
-        homeOptionText.setFont(new Font("Arial", Font.BOLD, 12));
-        homeOptionText.setHorizontalAlignment(SwingConstants.CENTER);
-        homeOptionText.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
+
+
 
         homeOption.setBackground(Color.WHITE);
         homeOption.add(homeOptionImageLabel, BorderLayout.CENTER);
@@ -181,11 +178,6 @@ public class MainWindow extends JFrame {
         orderOptionImage = new ResizeImage().resize(orderOptionImage, 30,28);
         orderOptionImageLabel = new JLabel(orderOptionImage); //va a ser un boton
 
-        orderOptionText = new JLabel("ORDEN");
-        orderOptionText.setForeground(new Color(236,90,90));
-        orderOptionText.setFont(new Font("Arial", Font.BOLD, 12));
-        orderOptionText.setHorizontalAlignment(SwingConstants.CENTER);
-        orderOptionText.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
 
         orderOption.setBackground(Color.WHITE);
         orderOption.add(orderOptionImageLabel, BorderLayout.CENTER);
@@ -204,28 +196,8 @@ public class MainWindow extends JFrame {
         orderHistoryOptionImage = new ResizeImage().resize(orderHistoryOptionImage, 30,28);
         orderHistoryOptionImageLabel = new JLabel(orderHistoryOptionImage);
 
-        orderHistoryOptionText = new JLabel("HISTORIAL");
-        orderHistoryOptionText.setForeground(new Color(189,189,189));
-        orderHistoryOptionText.setFont(new Font("Arial", Font.BOLD, 12));
-        orderHistoryOptionText.setHorizontalAlignment(SwingConstants.CENTER);
-        orderHistoryOptionText.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
-
-        orderHistoryOption.setBackground(Color.WHITE);
-        orderHistoryOption.add(orderHistoryOptionImageLabel, BorderLayout.CENTER);
-        orderHistoryOption.add(orderHistoryOptionText, BorderLayout.PAGE_END);
-        orderHistoryOption.setBorder(BorderFactory.createEmptyBorder(0,0,80,0));
-
         gbcLeftPanel.gridy = 2;
         leftPanel.add(orderHistoryOption, gbcLeftPanel);
-
-        //Settings Button
-
-        settingsOption = new JPanel();
-        settingsOption.setLayout(new BorderLayout());
-
-        settingsOptionImage = new ImageIcon("src/resources/OrderViewResources/LeftPanelIcons/Config Button Not Clicked.png");
-        settingsOptionImage = new ResizeImage().resize(settingsOptionImage, 30,28);
-        settingsOptionImageLabel = new JLabel(settingsOptionImage);
 
         settingsOptionText = new JLabel("CONFIG.");
         settingsOptionText.setForeground(new Color(189,189,189));
@@ -233,6 +205,11 @@ public class MainWindow extends JFrame {
         settingsOptionText.setHorizontalAlignment(SwingConstants.CENTER);
         settingsOptionText.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
 
+        settingsOption = new JPanel();
+        settingsOption.setLayout(new BorderLayout());
+        settingsOptionImage = new ImageIcon("src/resources/OrderViewResources/LeftPanelIcons/Config Button Not Clicked.png");
+        settingsOptionImage = new ResizeImage().resize(settingsOptionImage, 30,28);
+        settingsOptionImageLabel = new JLabel(settingsOptionImage);
         settingsOption.setBackground(Color.WHITE);
         settingsOption.add(settingsOptionImageLabel, BorderLayout.CENTER);
         settingsOption.add(settingsOptionText, BorderLayout.PAGE_END);
@@ -266,20 +243,6 @@ public class MainWindow extends JFrame {
 
         gbcBottomPanel.gridx = 2;
         navigationPanelBottom.add(drinkBUtton, gbcBottomPanel);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         this.add(topPanel, BorderLayout.NORTH);
         this.add(leftPanel, BorderLayout.WEST);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -287,8 +250,33 @@ public class MainWindow extends JFrame {
         this.setSize(1280,720);
         this.setVisible(true);
     }
-
-
+    public void createOrderOptionText() {
+        orderOptionText = new JLabel("ORDEN");
+        orderOptionText.setForeground(new Color(236, 90, 90));
+        orderOptionText.setFont(new Font("Arial", Font.BOLD, 12));
+        orderOptionText.setHorizontalAlignment(SwingConstants.CENTER);
+        orderOptionText.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+    }
+    public void createOrderHistoryOption(){
+        orderHistoryOption.setBackground(Color.WHITE);
+        orderHistoryOption.add(orderHistoryOptionImageLabel, BorderLayout.CENTER);
+        orderHistoryOption.add(orderHistoryOptionText, BorderLayout.PAGE_END);
+        orderHistoryOption.setBorder(BorderFactory.createEmptyBorder(0,0,80,0));
+    }
+    public void createOrderHistoryOptionText() {
+        orderHistoryOptionText = new JLabel("HISTORIAL");
+        orderHistoryOptionText.setForeground(new Color(189, 189, 189));
+        orderHistoryOptionText.setFont(new Font("Arial", Font.BOLD, 12));
+        orderHistoryOptionText.setHorizontalAlignment(SwingConstants.CENTER);
+        orderHistoryOptionText.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+    }
+    public void createHomeOptionText(){
+        homeOptionText = new JLabel("INICIO");
+        homeOptionText.setForeground(new Color(189,189,189));
+        homeOptionText.setFont(new Font("Arial", Font.BOLD, 12));
+        homeOptionText.setHorizontalAlignment(SwingConstants.CENTER);
+        homeOptionText.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
+    }
     private JPanel createItemPanel(String name, ImageIcon icon, String price) {
         JPanel itemPanel = new JPanel(new BorderLayout());
         itemPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY)); // As an example
@@ -320,7 +308,4 @@ public class MainWindow extends JFrame {
      */
 
 
-    public static void main(String[] args) {
-        new MainWindow();
-    }
 }

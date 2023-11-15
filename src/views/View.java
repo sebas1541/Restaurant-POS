@@ -2,7 +2,6 @@ package views;
 
 
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,7 +10,7 @@ import javax.swing.JPanel;
     public class View extends JFrame{
         private Login panelLogin;
         private ViewAdministrator panelInfoInventory;
-
+        private LogInView panelLV;
         private JPanel panel;
         public View(ActionListener ac) {
             this.setUpFrame();
@@ -22,18 +21,27 @@ import javax.swing.JPanel;
             this.setVisible(true);
             createPanelLogin(ac);
             createPanelInventoryAdm(ac);
+            createPanelLV(ac);
         }
         public void setUpFrame() {
             this.setTitle("Punto de venta");
             this.setSize(700,730);
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            this.setLayout(new GridLayout());
+            this.setLayout(new BorderLayout());
             this.setLocationRelativeTo(null);
         }
         public void createPanelLogin(ActionListener ac) {
             setPanel();
             panelLogin = new Login(ac);
             panel.add(panelLogin);
+            panel.revalidate();
+            panel.repaint();
+            repaint();
+        }
+        public void createPanelLV(ActionListener ac) {
+            setPanel();
+            panelLV = new LogInView(ac);
+            panel.add(panelLV);
             panel.revalidate();
             panel.repaint();
             repaint();
@@ -56,21 +64,18 @@ import javax.swing.JPanel;
             panel.add(panelLogin, BorderLayout.CENTER);
         }
         private void setPanel() {
-
             if (panelLogin != null) {
                 panelLogin.setVisible(false);
                 remove(panelLogin);
             }
-
             if (panelInfoInventory != null) {
                 panelInfoInventory.setVisible(false);
                 remove(panelInfoInventory);
             }
+            if (panelLV != null) {
+                panelLV.setVisible(false);
+                remove(panelLV);
+            }
         }
-
-        public static void main(String[] args) {
-            new View(null).createPanelInventoryAdm(null);
-        }
-
     }
 
