@@ -17,6 +17,10 @@ public class TopPanel extends JPanel {
     private JLabel date;
 
     public TopPanel(){
+        this.initComponents();
+    }
+
+    public void initComponents(){
         //Top Panel Styling
         GridBagConstraints gbcTopPanel = new GridBagConstraints();
         gbcTopPanel.insets = new Insets(5,17,5,70);
