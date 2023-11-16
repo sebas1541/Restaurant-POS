@@ -2,6 +2,9 @@ package model;
 
 import persistence.Persistence;
 
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
 import java.util.ArrayList;
 
 public class Inventory {
@@ -12,12 +15,15 @@ public class Inventory {
     }
 
     public void splitIngredients(Persistence persistence) {
-        String file = persistence.readIngredientsFile();
-        String[] lineIng = file.split("\n");
-        for (String data : lineIng) {
-            String[] ingredientsData = data.split(",");
-            Ingredient ing = new Ingredient(ingredientsData[0], Integer.parseInt(ingredientsData[1]));
-            addIngredients(ing);
+        JsonArray jsonArray = persistence.readIngredientsFile();
+        if (jsonArray != null) {
+            for (JsonObject jsonObject : jsonArray.getValuesAs(JsonObject.class)) {
+                String name = jsonObject.getString("name");
+                int value = jsonObject.getInt("value");
+                String price = null;
+                Ingredient ing = new Ingredient(name, value);
+                addIngredients(ing);
+            }
         }
     }
 

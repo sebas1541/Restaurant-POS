@@ -44,14 +44,4 @@ public class Auth {
         return output.toString();
     }
 
-    public static void main(String[] args) {
-
-        User user = new User("Hola", "hola1234", "password123", "cajero");
-        Auth auth = new Auth();
-        auth.addUser(user);
-
-        System.out.println("User List:\n" + auth.getUserListString());
-
-        System.out.println(auth.authenticate("hola1234", "password123"));
-    }
 }

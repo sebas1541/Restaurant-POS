@@ -1,4 +1,4 @@
-package views;
+package views.mainViews;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +15,7 @@ public class ViewAdministrator extends JPanel {
     private GridBagConstraints gbc;
 
     public ViewAdministrator(ActionListener ac) {
-        this.setBackground(new Color(228,223,223));
+        this.setBackground(Color.white);
         initComponents(ac);
     }
     public void initComponents(ActionListener ac) {
@@ -23,15 +23,22 @@ public class ViewAdministrator extends JPanel {
         gbc = new GridBagConstraints();
         createJLabelTitle();
         createJTextAreaModifyMenu();
-       createJButtonSend(ac);
+        createJButtonSend(ac);
         createJLabelOptionToModify();
         createOptionNumber();
         createNewQuantity();
         createJLabelQuantity();
     }
+    public String quantity(){
+        return quantity.getText();
+    }
+    public String optionModify(){
+        return optionToModify.getText();
+    }
+
     public void createJTextAreaModifyMenu() {
         modifyMenu = new JTextArea(menuOptions());
-        modifyMenu.setBackground(new Color(228,223,223));
+        modifyMenu.setBackground(Color.white);
         modifyMenu.setEditable(false);
         modifyMenu.setFont(new Font("century", Font.BOLD, 16));
         modifyMenu.setPreferredSize(new Dimension(500,300));
@@ -106,7 +113,7 @@ public class ViewAdministrator extends JPanel {
     }
     public void createJButtonSend(ActionListener ac) {
         modify = new JButton("Modificar");
-        modify.setBackground(new Color(247,199,49));
+        modify.setBackground(new Color(241,88,46));
         modify.setPreferredSize(new Dimension(100,50));
         modify.addActionListener(ac);
         gbc.gridx = 1;

@@ -1,19 +1,38 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HotDog {
     private String name;
-    private double price;
+    private int price;
     private List<Ingredient> ingredients;
-    private String imgFilePath;
+    private String path;
 
-    public HotDog(String name, double price, List<Ingredient> ingredients, String imgFilePath){
+    public HotDog(String name, int price, List<Ingredient> ingredients, String imgFilePath){
         this.name = name;
         this.price = price;
+        ingredients = new ArrayList<Ingredient>();
         this.ingredients = ingredients;
-        this.imgFilePath = imgFilePath;
+        this.path = imgFilePath;
     }
+
+    public HotDog (String name, ArrayList<Ingredient> iL, int price){
+        this.name = name;
+        this.ingredients  = new ArrayList<Ingredient>();
+        this.ingredients = iL;
+        this.price = price;
+    }
+
+    public HotDog(String name, List<Ingredient> ingredients, String imgFilePath, int price) {
+        this.name = name;
+        this.price = price;
+        this.ingredients = ingredients; // No need to create a new ArrayList, since ingredients are passed as a parameter
+        this.path = imgFilePath;
+    }
+
+
+
 
     public String getName() {
         return name;
@@ -23,11 +42,11 @@ public class HotDog {
         this.name = name;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -40,11 +59,11 @@ public class HotDog {
     }
 
     public String getImgFilePath() {
-        return imgFilePath;
+        return path;
     }
 
-    public void setImgFilePath(String imgFilePath) {
-        this.imgFilePath = imgFilePath;
+    public void setImgFilePath(String path) {
+        this.path = path;
     }
 
     @Override
@@ -53,7 +72,7 @@ public class HotDog {
                 "name='" + name + '\'' +
                 ", price=" + price +
                 ", ingredients=" + ingredients +
-                ", imgFilePath='" + imgFilePath + '\'' +
+                ", imgFilePath='" + path + '\'' +
                 '}';
     }
 }
