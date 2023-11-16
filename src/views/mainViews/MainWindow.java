@@ -1,12 +1,9 @@
-package views;
+package views.mainViews;
+
+import views.ownClasses.ResizeImage;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
-import javax.imageio.ImageIO;
-import javax.swing.border.Border;
 
 public class MainWindow extends JFrame {
 

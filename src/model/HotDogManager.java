@@ -3,7 +3,6 @@ package model;
 import java.util.ArrayList;
 
 public class HotDogManager {
-
     private ArrayList<Ingredient> toppings;
     private ArrayList<Ingredient> sauces;
     private ArrayList<Ingredient> extras;
@@ -11,9 +10,9 @@ public class HotDogManager {
 
     public HotDogManager(String name_client) {
         this.name_client = name_client;
-        toppings = new ArrayList<Ingredient>();
-        sauces = new ArrayList<Ingredient>();
-        toppings = new ArrayList<Ingredient>();
+        toppings = new ArrayList<>();
+        sauces = new ArrayList<>();
+        extras = new ArrayList<>();
     }
 
     public void toppings(String name) {
@@ -51,13 +50,10 @@ public class HotDogManager {
     }
 
     public ArrayList<Ingredient> totalIngredients() {
-        ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
         ingredients.addAll(toppings);
         ingredients.addAll(sauces);
         ingredients.addAll(extras);
-        sauces.clear();
-        extras.clear();
-        toppings.clear();
         return ingredients;
     }
 
@@ -80,13 +76,15 @@ public class HotDogManager {
 
     public HotDog classic(String nameI, int quantityI) {
         String name = "Clasico";
+        String path = "src/resources/HotDogPhotos/PerroClasico.png";
         int price = 12500;
-        HotDog hotDogClassic = new HotDog(name, totalIngredients(), totalPrice(price, totalIngredients()));
+        HotDog hotDogClassic = new HotDog(name, totalIngredients(), path, totalPrice(price, totalIngredients()));
         return hotDogClassic;
     }
 
     public HotDog dogzilla(String nameI, int quantityI) {
         String name = "Dogzilla";
+        String path = "src/resources/HotDogPhotos/DogZilla.png";
         int price = 16500;
         ArrayList<Ingredient> ing = new ArrayList<Ingredient>();
         ing.add(new Ingredient("Pan", 1, 0));
@@ -99,12 +97,13 @@ public class HotDogManager {
         ing.add(new Ingredient("Huevo Codorniz", 1, 0));
         ing.add(new Ingredient("Queso Derretido", 1, 0));
         ing.addAll(totalIngredients());
-        HotDog hotDogDogzilla = new HotDog(name, ing, totalPrice(price, ing));
+        HotDog hotDogDogzilla = new HotDog(name, ing, path, totalPrice(price, ing));
         return hotDogDogzilla;
     }
 
     public HotDog mexican(String nameI, int quantityI) {
         String name = "Mexicano";
+        String path = "src/resources/HotDogPhotos/Mexicano.png";
         int price = 15500;
         ArrayList<Ingredient> ing = new ArrayList<Ingredient>();
         ing.add(new Ingredient("Pan", 1, 0));
@@ -113,12 +112,13 @@ public class HotDogManager {
         ing.add(new Ingredient("Queso Chedar", 1, 0));
         ing.add(new Ingredient("Maiz Tierno", 1, 0));
         ing.addAll(saucesAndExtras());
-        HotDog hotDogMexican = new HotDog(name, ing, totalPrice(price, ing));
+        HotDog hotDogMexican = new HotDog(name, ing, path, totalPrice(price, ing));
         return hotDogMexican;
     }
 
     public HotDog colombian(String nameI, int quantityI) {
         String name = "Colombiano";
+        String path = "src/resources/HotDogPhotos/Colombiano.png";
         int price = 14900;
         ArrayList<Ingredient> ing = new ArrayList<Ingredient>();
         ing.add(new Ingredient("Pan", 1, 0));
@@ -131,12 +131,13 @@ public class HotDogManager {
         ing.add(new Ingredient("Mayonesa", 1, 0));
         ing.add(new Ingredient("Mostaza", 1, 0));
         ing.addAll(saucesAndExtras());
-        HotDog hotDogColombian = new HotDog(name, ing, totalPrice(price, ing));
+        HotDog hotDogColombian = new HotDog(name, ing, path, totalPrice(price, ing));
         return hotDogColombian;
     }
 
     public HotDog hawaiian(String nameI, int quantityI) {
         String name = "Hawaiano";
+        String path = "src/resources/HotDogPhotos/Hawaiano.png";
         int price = 14900;
         ArrayList<Ingredient> ing = new ArrayList<Ingredient>();
         ing.add(new Ingredient("Pan", 1, 0));
@@ -148,12 +149,13 @@ public class HotDogManager {
         ing.add(new Ingredient("Salsa de Pina", 1, 0));
         ing.add(new Ingredient("Mayonesa", 1, 0));
         ing.addAll(extras);
-        HotDog hotDogHawaiian = new HotDog(name, ing, totalPrice(price, ing));
+        HotDog hotDogHawaiian = new HotDog(name, ing, path, totalPrice(price, ing));
         return hotDogHawaiian;
     }
 
     public HotDog italian(String nameI, int quantityI) {
         String name = "Italiano";
+        String path = "src/resources/HotDogPhotos/Italiano.png";
         int price = 14900;
         ArrayList<Ingredient> ing = new ArrayList<Ingredient>();
         ing.add(new Ingredient("Pan", 1, 0));
@@ -163,12 +165,13 @@ public class HotDogManager {
         ing.add(new Ingredient("Salsa de Tomate", 1, 0));
         ing.add(new Ingredient("Salsa Rosada", 1, 0));
         ing.add(new Ingredient("Mayonesa", 1, 0));
-        HotDog hotDogItalian = new HotDog(name, ing, totalPrice(price, ing));
+        HotDog hotDogItalian = new HotDog(name, ing, path, totalPrice(price, ing));
         return hotDogItalian;
     }
 
     public HotDog shredded(String nameI, int quantityI) {
         String name = "Desgranado";
+        String path = "src/resources/HotDogPhotos/Desgranado.png";
         int price = 14900;
         ArrayList<Ingredient> ing = new ArrayList<Ingredient>();
         ing.add(new Ingredient("Pan", 1, 0));
@@ -181,7 +184,7 @@ public class HotDogManager {
         ing.add(new Ingredient("Mayonesa", 1, 0));
         ing.add(new Ingredient("Salsa de Pina", 1, 0));
         ing.addAll(extras);
-        HotDog hotDogShredded = new HotDog(name, ing, totalPrice(price, ing));
+        HotDog hotDogShredded = new HotDog(name, ing, path, totalPrice(price, ing));
         return hotDogShredded;
     }
 

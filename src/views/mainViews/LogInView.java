@@ -1,6 +1,6 @@
-package views;
+package views.mainViews;
 
-import resources.Fonts.Roboto;
+import views.ownClasses.ResizeImage;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,4 +1,4 @@
-package views;
+package views.ownClasses;
 
 import javax.swing.*;
 import java.awt.*;

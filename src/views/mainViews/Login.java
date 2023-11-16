@@ -1,4 +1,6 @@
-package views;
+package views.mainViews;
+
+import views.ownClasses.ResizeImage;
 
 import javax.swing.*;
 import java.awt.*;
