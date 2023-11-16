@@ -1,8 +1,11 @@
 package views.panels;
 
+import model.HotDog;
 import views.ownClasses.ResizeImage;
 
 import javax.swing.*;
+import java.util.List;
+
 import java.awt.*;
 
 public class CenterPanel extends JPanel {
@@ -35,18 +38,27 @@ public class CenterPanel extends JPanel {
     }
 
     private void initializeItemsPanel() {
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-
-        itemsPanel = new JPanel();
+        itemsPanel = new JPanel(new GridLayout(0, 3, 10, 10));
         itemsPanel.setBackground(Color.WHITE);
-
-        ImageIcon itemImage = new ImageIcon("src/resources/HotDogPhotos/PerroClasico.png");
-        itemImage = new ResizeImage().resize(itemImage, 203, 143);
-
-        addHotDogItem("CLÁSICO", "10.500", itemImage);
     }
+
+    public void displayHotDogs(List<HotDog> hotDogs) {
+        itemsPanel.removeAll();
+        for (HotDog hotDog : hotDogs) {
+            System.out.println("HotDog Name: " + hotDog.getName() + " Price: " + hotDog.getPrice()); //Probando Instancia de objeto porque no cargaba el precio
+            ImageIcon itemImage = new ImageIcon(hotDog.getImgFilePath());
+            itemImage = new ResizeImage().resize(itemImage, 203, 143);
+            addHotDogItem(hotDog.getName(), Integer.toString(hotDog.getPrice()), itemImage);
+        }
+        itemsPanel.revalidate();
+        itemsPanel.repaint();
+    }
+
+    public void populateHotDogs(List<HotDog> hotDogs) {
+        displayHotDogs(hotDogs);
+    }
+
+
 
     private void addHotDogItem(String name, String price, ImageIcon image) {
         JPanel item = new JPanel(new BorderLayout());
@@ -62,6 +74,7 @@ public class CenterPanel extends JPanel {
 
     private JPanel createItemInfoPanel(String name, String price) {
         JPanel itemInfoPanel = createPanelWithGridBag(new Color(216, 230, 233));
+        itemInfoPanel.setPreferredSize(new Dimension(120,120));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
 

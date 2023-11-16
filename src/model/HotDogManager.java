@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HotDogManager {
     private ArrayList<Ingredient> toppings;
@@ -67,11 +68,15 @@ public class HotDogManager {
     }
 
     public int totalPrice(int hotDogPrice, ArrayList<Ingredient> ingredients) {
-        int add = 0;
+        //int add = 0;
+        /*
         for (int i = 0; i < ingredients.size(); i++) {
-            add += ingredients.get(i).getPrice();
+            add += ingredients.get(i).getPrice() + hotDogPrice;
         }
         return add;
+
+         */
+        return hotDogPrice;
     }
 
     public HotDog classic(String nameI, int quantityI) {
@@ -104,13 +109,14 @@ public class HotDogManager {
     public HotDog mexican(String nameI, int quantityI) {
         String name = "Mexicano";
         String path = "src/resources/HotDogPhotos/Mexicano.png";
-        int price = 15500;
+
         ArrayList<Ingredient> ing = new ArrayList<Ingredient>();
         ing.add(new Ingredient("Pan", 1, 0));
         ing.add(new Ingredient("Salchicha", 1, 0));
         ing.add(new Ingredient("Chile con Carne", 1, 0));
         ing.add(new Ingredient("Queso Chedar", 1, 0));
         ing.add(new Ingredient("Maiz Tierno", 1, 0));
+        int price = 15500;
         ing.addAll(saucesAndExtras());
         HotDog hotDogMexican = new HotDog(name, ing, path, totalPrice(price, ing));
         return hotDogMexican;
@@ -154,7 +160,7 @@ public class HotDogManager {
     }
 
     public HotDog italian(String nameI, int quantityI) {
-        String name = "Italiano";
+        String name = "ITALIANO";
         String path = "src/resources/HotDogPhotos/Italiano.png";
         int price = 14900;
         ArrayList<Ingredient> ing = new ArrayList<Ingredient>();
@@ -186,6 +192,18 @@ public class HotDogManager {
         ing.addAll(extras);
         HotDog hotDogShredded = new HotDog(name, ing, path, totalPrice(price, ing));
         return hotDogShredded;
+    }
+
+    public List<HotDog> getAllHotDogs(){
+        List<HotDog> hotDogs = new ArrayList<>();
+        hotDogs.add(classic("clasico", 1));
+        hotDogs.add(dogzilla("dogzilla", 1));
+        hotDogs.add(mexican("mexicano", 1));
+        hotDogs.add(colombian("cololmbiano", 1));
+        hotDogs.add(hawaiian("hawaiano", 1));
+        hotDogs.add(italian("italiano", 1));
+        hotDogs.add(shredded("desmechado", 1));
+        return hotDogs;
     }
 
     public String getName_client() {

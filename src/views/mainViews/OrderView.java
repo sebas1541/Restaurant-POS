@@ -1,4 +1,6 @@
 package views.mainViews;
+import model.HotDogManager;
+import presenter.OrderPresenter;
 import views.panels.CenterPanel;
 import views.panels.LeftPanel;
 import views.panels.RightPanel;
@@ -6,7 +8,7 @@ import views.panels.TopPanel;
 
 import javax.swing.*;
 import java.awt.*;
-
+import java.awt.event.ActionListener;
 
 
 public class OrderView extends JFrame {
@@ -17,10 +19,13 @@ public class OrderView extends JFrame {
     private ImageIcon companyIcon;
 
     private RightPanel rightPanel;
+    private OrderPresenter orderPresenter;
 
 
     public OrderView() {
       this.initComponents();
+        HotDogManager manager = new HotDogManager("Client Name");
+        this.orderPresenter = new OrderPresenter(this, manager);
     }
 
     public void initComponents(){
@@ -41,7 +46,13 @@ public class OrderView extends JFrame {
     }
 
 
+    public CenterPanel getCenterPanel() {
+        return centerPanel;
+    }
+
     public static void main(String[] args) {
         new OrderView();
     }
+
+
 }

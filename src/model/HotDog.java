@@ -27,7 +27,7 @@ public class HotDog {
     public HotDog(String name, List<Ingredient> ingredients, String imgFilePath, int price) {
         this.name = name;
         this.price = price;
-        this.ingredients = ingredients; // No need to create a new ArrayList, since ingredients are passed as a parameter
+        this.ingredients = ingredients;
         this.path = imgFilePath;
     }
 

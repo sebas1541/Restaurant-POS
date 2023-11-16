@@ -20,7 +20,7 @@ public class MainPresenter implements ActionListener {
             view.createPanelLV(this);
         }
         if(e.getActionCommand().equals("Empleado")){
-
+            view.createPanelOrderView(this);
         }
         if(e.getActionCommand().equals("Submit")) {
             view.createPanelInventoryAdm(this);

@@ -1,6 +1,8 @@
 package views.mainViews;
 
 
+import model.Order;
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -51,6 +53,15 @@ public class View extends JFrame{
         setPanel();
         panelInfoInventory = new ViewAdministrator(ac);
         panel.add(panelInfoInventory);
+        panel.revalidate();
+        panel.repaint();
+        repaint();
+    }
+
+    public void createPanelOrderView(ActionListener ac){
+        setPanel();
+        //OrderView orderView = new OrderView(ac);
+        //panel.add(orderView);
         panel.revalidate();
         panel.repaint();
         repaint();
