@@ -1,4 +1,4 @@
-package views.mainViews;
+package views.mainviews;
 
 public class PaymentView {
 }

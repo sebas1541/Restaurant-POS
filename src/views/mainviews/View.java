@@ -1,7 +1,5 @@
-package views.mainViews;
+package views.mainviews;
 
-
-import model.Order;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;

@@ -2,8 +2,7 @@ package presenter;
 
 import model.HotDog;
 import model.HotDogManager;
-import model.Order;
-import views.mainViews.OrderView;
+import views.mainviews.OrderView;
 
 import java.util.List;
 

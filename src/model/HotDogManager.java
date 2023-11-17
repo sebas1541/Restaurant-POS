@@ -80,7 +80,7 @@ public class HotDogManager {
     }
 
     public HotDog classic(String nameI, int quantityI) {
-        String name = "Clasico";
+        String name = "CLASICO";
         String path = "src/resources/HotDogPhotos/PerroClasico.png";
         int price = 12500;
         HotDog hotDogClassic = new HotDog(name, totalIngredients(), path, totalPrice(price, totalIngredients()));
@@ -88,7 +88,7 @@ public class HotDogManager {
     }
 
     public HotDog dogzilla(String nameI, int quantityI) {
-        String name = "Dogzilla";
+        String name = "DOGZILLA";
         String path = "src/resources/HotDogPhotos/DogZilla.png";
         int price = 16500;
         ArrayList<Ingredient> ing = new ArrayList<Ingredient>();
@@ -107,7 +107,7 @@ public class HotDogManager {
     }
 
     public HotDog mexican(String nameI, int quantityI) {
-        String name = "Mexicano";
+        String name = "MEXICANO";
         String path = "src/resources/HotDogPhotos/Mexicano.png";
 
         ArrayList<Ingredient> ing = new ArrayList<Ingredient>();
@@ -123,7 +123,7 @@ public class HotDogManager {
     }
 
     public HotDog colombian(String nameI, int quantityI) {
-        String name = "Colombiano";
+        String name = "COLOMBIANO";
         String path = "src/resources/HotDogPhotos/Colombiano.png";
         int price = 14900;
         ArrayList<Ingredient> ing = new ArrayList<Ingredient>();
@@ -142,7 +142,7 @@ public class HotDogManager {
     }
 
     public HotDog hawaiian(String nameI, int quantityI) {
-        String name = "Hawaiano";
+        String name = "HAWAIANO";
         String path = "src/resources/HotDogPhotos/Hawaiano.png";
         int price = 14900;
         ArrayList<Ingredient> ing = new ArrayList<Ingredient>();
@@ -176,7 +176,7 @@ public class HotDogManager {
     }
 
     public HotDog shredded(String nameI, int quantityI) {
-        String name = "Desgranado";
+        String name = "DESGRANADO";
         String path = "src/resources/HotDogPhotos/Desgranado.png";
         int price = 14900;
         ArrayList<Ingredient> ing = new ArrayList<Ingredient>();

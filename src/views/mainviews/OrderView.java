@@ -1,4 +1,4 @@
-package views.mainViews;
+package views.mainviews;
 import model.HotDogManager;
 import presenter.OrderPresenter;
 import views.panels.CenterPanel;
@@ -8,7 +8,6 @@ import views.panels.TopPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 
 public class OrderView extends JFrame {
@@ -41,7 +40,7 @@ public class OrderView extends JFrame {
         this.add(rightPanel, BorderLayout.EAST);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setIconImage(companyIcon.getImage());
-        this.setSize(1280,850);
+        this.setSize(1400,900);
         this.setVisible(true);
     }
 

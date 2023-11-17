@@ -1,7 +1,7 @@
 package presenter;
 
 
-import views.mainViews.View;
+import views.mainviews.View;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
