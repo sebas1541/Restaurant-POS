@@ -1,18 +1,26 @@
 package views.mainviews;
 
+import model.Ingredient;
+
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.sql.SQLOutput;
+import java.util.ArrayList;
 
 public class ViewAdministrator extends JPanel {
-    private JTextArea modifyMenu;
+    private JTable jTable;
     private JLabel labelOptionToModify;
     private JTextField optionToModify;
     private JLabel quantityLabel;
     private JTextField quantity;
     private JButton modify;
+    private JButton goBack;
     private JLabel title;
     private GridBagConstraints gbc;
+    private DefaultTableModel table;
 
     public ViewAdministrator(ActionListener ac) {
         this.setBackground(Color.white);
@@ -22,8 +30,9 @@ public class ViewAdministrator extends JPanel {
         this.setLayout(new GridBagLayout());
         gbc = new GridBagConstraints();
         createJLabelTitle();
-        createJTextAreaModifyMenu();
+        createJTable();
         createJButtonSend(ac);
+        createJButtonReturn(ac);
         createJLabelOptionToModify();
         createOptionNumber();
         createNewQuantity();
@@ -36,33 +45,32 @@ public class ViewAdministrator extends JPanel {
         return optionToModify.getText();
     }
 
-    public void createJTextAreaModifyMenu() {
-        modifyMenu = new JTextArea(menuOptions());
-        modifyMenu.setBackground(Color.white);
-        modifyMenu.setEditable(false);
-        modifyMenu.setFont(new Font("century", Font.BOLD, 16));
-        modifyMenu.setPreferredSize(new Dimension(500,300));
+    public void createJTable() {
+        jTable = new JTable(createTable());
+        JScrollPane scroll = new JScrollPane(jTable);
+        jTable.setBackground(Color.white);
+        jTable.setFont(new Font("century", Font.BOLD, 16));
+        jTable.setPreferredSize(new Dimension(500,300));
         gbc.insets = new Insets(0,0,20,0);
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.anchor = GridBagConstraints.CENTER;
-        this.add(modifyMenu, gbc);
+        this.add(scroll, gbc);
     }
-    public String menuOptions(){
-        return"\n1. Pan                                             2. Salchicha\n"+
-                "3. Cebolla                                       4. Tomate\n"+
-                "5. Papas Cabello de Angel             6. Jalapenos\n"+
-                "7. Tostacos                                     8. Pepinillos\n"+
-                "9. Salsa de Tomate                      10. Salsa BBQ\n"+
-                "11. Salsa Rosada                         12. Salsa de Pina\n"+
-                "13. Mostaza                                 14. Salsa Tartara\n"+
-                "15. Salsa Mayo Mostaza             16. Mayonesa\n"+
-                "17. Huevo Codorniz                     18. Pina\n"+
-                "19. Maiz Tierno                           20. Queso Derretido\n"+
-                "21. Queso Chedar                        22. Pollo\n"+
-                "23. Tocineta                                 24. Chile con Carne\n"+
-                "25. Pepperoni                               26. Terminar modificaciones \n";
+    public DefaultTableModel createTable(){
+        table = new DefaultTableModel();
+        table.addColumn("Ingrediente");
+        table.addColumn("Cantidad");
+        return table;
     }
+    public void ingredientsData(ArrayList<Ingredient> ingredient){
+        table.setRowCount(0);
+        for (Ingredient ingr : ingredient) {
+            Object[] fila = {ingr.getName(), ingr.getQuantity()};
+            table.addRow(fila);
+        }
+    }
+
     public void createJLabelTitle() {
         title = new JLabel("Inventario");
         title.setFont(new Font("century", Font.BOLD, 24));
@@ -122,5 +130,20 @@ public class ViewAdministrator extends JPanel {
         gbc.insets = new Insets(0, 0, 30, 0);
         this.add(modify, gbc);
     }
+    public void createJButtonReturn(ActionListener ac) {
+        goBack = new JButton("Volver");
+        goBack.setBackground(new Color(241,88,9));
+        goBack.setPreferredSize(new Dimension(100,50));
+        goBack.addActionListener(ac);
+        gbc.gridx = 0;
+        gbc.gridy = 7;
+        gbc.gridwidth = 3;
+        gbc.insets = new Insets(0, 0, 30, 0);
+        this.add(goBack, gbc);
+    }
 
+    public static void main(String[] args) {
+        new View(null).createPanelInventoryAdm(null);
+
+    }
 }

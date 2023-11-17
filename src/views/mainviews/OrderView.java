@@ -23,7 +23,7 @@ public class OrderView extends JFrame {
 
     public OrderView() {
       this.initComponents();
-        HotDogManager manager = new HotDogManager("Client Name");
+        HotDogManager manager = new HotDogManager();
         this.orderPresenter = new OrderPresenter(this, manager);
     }
 
@@ -49,9 +49,8 @@ public class OrderView extends JFrame {
         return centerPanel;
     }
 
+
     public static void main(String[] args) {
         new OrderView();
     }
-
-
 }
