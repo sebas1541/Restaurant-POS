@@ -12,16 +12,13 @@ import views.mainviews.ViewAdministrator;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainPresenter implements ActionListener {
+public class MainPresenter implements ActionListener{
     protected View view;
     protected Persistence pr;
     protected Inventory inv;
-
     protected ViewAdministrator viewAdm;
     protected Login viewLogin;
     protected MainWindow mainWindow;
-
-
 
     public MainPresenter() {
         view = new View(this);
@@ -30,11 +27,11 @@ public class MainPresenter implements ActionListener {
         viewAdm = new ViewAdministrator(this);
         viewLogin = new Login(this);
         mainWindow = new MainWindow(this);
+        view.createPanelMainWindow(this);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
 
     }
-
 
 }

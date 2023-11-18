@@ -1,8 +1,5 @@
 package views.panels;
-
-import model.HotDog;
-import views.ownclass.ResizeImage;
-
+import presenter.HotDogDTO;
 import javax.swing.*;
 import java.util.List;
 
@@ -44,23 +41,14 @@ public class CenterPanel extends JPanel {
         itemsPanel.setBackground(Color.WHITE);
     }
 
-    public void displayHotDogs(List<HotDog> hotDogs) {
+    public void populateHotDogs(List<HotDogDTO> hotDogDTOs) {
         itemsPanel.removeAll();
-        for (HotDog hotDog : hotDogs) {
-            System.out.println("HotDog Name: " + hotDog.getName() + " Price: " + hotDog.getPrice()); //Probando Instancia de objeto porque no cargaba el precio
-            ImageIcon itemImage = new ImageIcon(hotDog.getImgFilePath());
-            itemImage = new ResizeImage().resize(itemImage, 203, 143);
-            addHotDogItem(hotDog.getName(), "$" + Integer.toString(hotDog.getPrice()), itemImage);
+        for (HotDogDTO dto : hotDogDTOs) {
+            addHotDogItem(dto.getName(), dto.getPrice(), dto.getImage());
         }
         itemsPanel.revalidate();
         itemsPanel.repaint();
     }
-
-    public void populateHotDogs(List<HotDog> hotDogs) {
-        displayHotDogs(hotDogs);
-    }
-
-
 
     private void addHotDogItem(String name, String price, ImageIcon image) {
         JPanel item = new JPanel(new BorderLayout());

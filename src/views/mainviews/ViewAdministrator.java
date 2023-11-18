@@ -63,13 +63,6 @@ public class ViewAdministrator extends JPanel {
         table.addColumn("Cantidad");
         return table;
     }
-    public void ingredientsData(ArrayList<Ingredient> ingredient){
-        table.setRowCount(0);
-        for (Ingredient ingr : ingredient) {
-            Object[] fila = {ingr.getName(), ingr.getQuantity()};
-            table.addRow(fila);
-        }
-    }
 
     public void createJLabelTitle() {
         title = new JLabel("Inventario");
@@ -142,8 +135,15 @@ public class ViewAdministrator extends JPanel {
         this.add(goBack, gbc);
     }
 
+    public DefaultTableModel getTable() {
+        return table;
+    }
+
+    public void setTable(DefaultTableModel table) {
+        this.table = table;
+    }
+
     public static void main(String[] args) {
         new View(null).createPanelInventoryAdm(null);
-
     }
 }

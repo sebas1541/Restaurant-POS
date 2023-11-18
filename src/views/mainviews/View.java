@@ -11,6 +11,7 @@ public class View extends JFrame{
     private ViewAdministrator panelInfoInventory;
     private Login panelLogin;
     private JPanel panel;
+    private OrderView orderView;
     public View(ActionListener ac) {
         this.setUpFrame();
         this.initComponents(ac);
@@ -21,18 +22,16 @@ public class View extends JFrame{
     }
     public void initComponents(ActionListener ac) {
         addHeader(ac);
-        this.setVisible(true);
-        createPanelMainWindow(ac);
-        createPanelInventoryAdm(ac);
-        createPanelLogin(ac);
     }
     public void setUpFrame() {
         this.setTitle("Punto de venta");
-        this.setSize(700,730);
+        this.setSize(1400,900);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
         this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
+
     public void createPanelMainWindow(ActionListener ac) {
         setPanel();
         panelMainWindow = new MainWindow(ac);
@@ -41,6 +40,17 @@ public class View extends JFrame{
         panel.repaint();
         repaint();
     }
+
+    public void createOrderPanel(ActionListener ac){
+        setPanel();
+        orderView = new OrderView(ac);
+        panel.add(orderView);
+        panel.setSize(1400,900);
+        panel.revalidate();
+        panel.repaint();
+        repaint();
+    }
+
     public void createPanelLogin(ActionListener ac) {
         setPanel();
         panelLogin = new Login(ac);
@@ -79,5 +89,17 @@ public class View extends JFrame{
             panelLogin.setVisible(false);
             remove(panelLogin);
         }
+    }
+    public String user(){
+        return panelLogin.user();
+    }
+    public String password(){
+        return panelLogin.password();
+    }
+    public String quantity(){
+        return panelInfoInventory.quantity();
+    }
+    public String optionModify(){
+        return panelInfoInventory.optionModify();
     }
 }

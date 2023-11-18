@@ -3,23 +3,35 @@ package presenter;
 import model.HotDog;
 import model.HotDogManager;
 import views.mainviews.OrderView;
+import views.ownclass.ResizeImage;
 
+import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
 
     public class OrderPresenter {
         private OrderView view;
-        private HotDogManager model;
+        private HotDogManager model = new HotDogManager();
 
-        public OrderPresenter(OrderView view, HotDogManager model) {
+        public OrderPresenter(OrderView view) {
             this.view = view;
-            this.model = model;
             populateCenterPanelWithHotDogs();
         }
 
         private void populateCenterPanelWithHotDogs() {
             List<HotDog> hotDogs = model.getAllHotDogs();
-            view.getCenterPanel().populateHotDogs(hotDogs);
+            List<HotDogDTO> hotDogDTOs = new ArrayList<>();
+
+            for (HotDog hotDog : hotDogs) {
+                ImageIcon itemImage = new ImageIcon(hotDog.getImgFilePath());
+                itemImage = new ResizeImage().resize(itemImage, 203, 143);
+                hotDogDTOs.add(new HotDogDTO(hotDog.getName(), "$" + hotDog.getPrice(), itemImage));
+            }
+
+            view.getCenterPanel().populateHotDogs(hotDogDTOs);
         }
+
+
     }

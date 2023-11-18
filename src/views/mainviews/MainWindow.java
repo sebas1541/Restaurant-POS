@@ -7,10 +7,9 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class MainWindow extends JPanel {
-    private JButton employee;
-    private JButton adm;
-    private JLabel info;
-    private JLabel icon;
+    private JButton employee, adm;
+    private JLabel info, icon;
+
     private GridBagConstraints gbc;
     public MainWindow(ActionListener ac){
         this.setBackground(Color.white);
@@ -26,18 +25,17 @@ public class MainWindow extends JPanel {
     }
     public void createJLabelIcon() {
         ImageIcon ImgIcon = new ImageIcon("src/resources/Logos/logo-dogzilla-01.png");
-        ImgIcon = new ResizeImage().resize(ImgIcon,100,100 );
+        ImgIcon = new ResizeImage().resize(ImgIcon,100,100);
         icon = new JLabel(ImgIcon);
-        icon.setPreferredSize(new Dimension(100,100));
         gbc.insets = new Insets(0,0,50,0);
         gbc.gridx = 0;
         gbc.gridy = 1;
         this.add(icon, gbc);
     }
     public void createJLabelInfo() {
-        info = new JLabel("Presione el boton del rol que desempeñas");
-        info.setFont(new Font("century", Font.BOLD, 24));
-        info.setForeground(new Color(85,207,0));
+        info = new JLabel("Elige la opción:");
+        info.setFont(new Font("Arial", Font.BOLD, 24));
+        info.setForeground(Color.BLACK);
         info.setPreferredSize(new Dimension(500,30));
         gbc.gridx = 0;
         gbc.gridy = 3;
@@ -49,25 +47,22 @@ public class MainWindow extends JPanel {
     public void createJButtonemployee(ActionListener ac) {
         employee = new JButton("Empleado");
         employee.addActionListener(ac);
-        employee.setBackground(new Color(246,20,48));
-        employee.setOpaque(true);
-        employee.setFont(new Font("century", Font.BOLD, 15));
         employee.setPreferredSize(new Dimension(150,50));
         gbc.insets = new Insets(0,0,20,0);
         gbc.gridx = 1;
         gbc.gridy = 5;
+        gbc.anchor = GridBagConstraints.WEST;
         gbc.gridwidth = 1;
         this.add(employee, gbc);
     }
     public void createJButtonSend(ActionListener ac) {
         adm = new JButton("Administrador");
         adm.addActionListener(ac);
-        adm.setBackground(new Color(246,20,48));
-        adm.setFont(new Font("century", Font.BOLD, 15));
         adm.setPreferredSize(new Dimension(150,50));
         gbc.insets = new Insets(0,0,20,0);
         gbc.gridx = 2;
         gbc.gridy = 5;
+        gbc.anchor = GridBagConstraints.EAST;
         gbc.gridwidth = 1;
         this.add(adm, gbc);
     }
