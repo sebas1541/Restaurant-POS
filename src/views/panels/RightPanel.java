@@ -1,42 +1,159 @@
 package views.panels;
 
 import javax.swing.*;
+import java.awt.*;
 
-public class RightPanel extends JPanel{
-    //Atributos Sub Panel Superior del Panel Derecho
+public class RightPanel extends JPanel {
+    private JPanel topPanel, centerPanel, bottomPanel, itemSelectedPanel;
+    private JLabel orderLabel, orderNumberLabel, customerLabel, customerNameLabel;
+    private JLabel itemSummaryItemName, ItemSummaryItemPrice, quantityText, quantityValue;
+    private JLabel subtotal, subtotalPrice, tax, taxPrice, total, totalPrice;
+    private JButton cancel, confirm;
 
-    private JPanel topPanelOfRightPanel;
-    private JLabel orderLabel;
-    private JLabel orderNumberLabel;
-    private JLabel customerLabel;
-    private JLabel customerNameLabel;
+    public RightPanel() {
+        initComponents();
+    }
 
-    //Atributos Sub Panel central del Panel Derecho - Resumen de Items
+    private void initComponents() {
+        setLayout(new BorderLayout());
+        setBackground(Color.WHITE);
 
-    private JPanel centerPanelofRightPanel;
-    private JPanel itemSummary;
-    private ImageIcon itemSummaryImage;
-    private JLabel itemSummaryItemName;
-    private JLabel ItemSummaryItemPrice;
-    private JLabel quantityText;
-    private JLabel quantityValue;
-    private JButton addItem;
-    private JButton substractItem;
+        createTopPanel();
+        createCenterPanel();
+        createBottomPanel();
 
-    //Atributos Sub Panel Inferior del Panel Derecho - Resumen de Orden
-    private JPanel buttomPanelOfRightPanel;
+        add(topPanel, BorderLayout.NORTH);
+        add(centerPanel, BorderLayout.CENTER);
+        add(bottomPanel, BorderLayout.SOUTH);
+    }
 
-    //Atrrubitos Sub Panel Superior del Sub Panel inferior del Panel Derecho
-    private JPanel topPanelOfButtomPanelofRightPanel;
-    private JLabel subtotalText;
-    private JLabel subtotalValue;
-    private JLabel taxText;
-    private JLabel taxValue;
+    private void createTopPanel() {
+        topPanel = new JPanel(new GridBagLayout());
+        topPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        topPanel.setBackground(Color.WHITE);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
 
-    //Atributos Sub Panel Inferior del Sub Panel inferior del Panel Derecho
-    private JPanel buttomPanelOfButtomPanelofRightPanel;
-    private JLabel total;
-    private JLabel totalPriceValue;
-    private JButton cancelButton;
-    private JButton confirmButton;
+        orderLabel = new JLabel("ORDEN #");
+        orderLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        orderLabel.setForeground(Color.BLACK);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        topPanel.add(orderLabel, gbc);
+
+        orderNumberLabel = new JLabel("1234567");
+        orderNumberLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        orderNumberLabel.setForeground(Color.BLACK);
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        topPanel.add(orderNumberLabel, gbc);
+
+        customerLabel = new JLabel("CLIENTE:");
+        customerLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        customerLabel.setForeground(Color.BLACK);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        topPanel.add(customerLabel, gbc);
+
+        customerNameLabel = new JLabel("SEBASTIAN CANON CASTELLANOS");
+        customerNameLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        customerNameLabel.setForeground(new Color(236, 90, 90));
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        topPanel.add(customerNameLabel, gbc);
+    }
+
+    private void createCenterPanel() {
+        centerPanel = new JPanel(new GridLayout(4, 0));
+        centerPanel.setBackground(Color.WHITE);
+
+        itemSelectedPanel = new JPanel(new GridBagLayout());
+        itemSelectedPanel.setBackground(new Color(216, 230, 233));
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+
+        itemSummaryItemName = new JLabel("CLASICO");
+        itemSummaryItemName.setFont(new Font("Arial", Font.PLAIN, 17));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        itemSelectedPanel.add(itemSummaryItemName, gbc);
+
+        ItemSummaryItemPrice = new JLabel("$12.500");
+        ItemSummaryItemPrice.setFont(new Font("Arial", Font.BOLD, 26));
+        gbc.gridy = 1;
+        itemSelectedPanel.add(ItemSummaryItemPrice, gbc);
+
+        quantityText = new JLabel("CANTIDAD");
+        quantityText.setFont(new Font("Arial", Font.PLAIN, 17));
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.EAST;
+        itemSelectedPanel.add(quantityText, gbc);
+
+        quantityValue = new JLabel("2");
+        quantityValue.setFont(new Font("Arial", Font.BOLD, 26));
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.CENTER;
+        itemSelectedPanel.add(quantityValue, gbc);
+
+        centerPanel.add(itemSelectedPanel);
+    }
+
+    private void createBottomPanel() {
+        bottomPanel = new JPanel(new GridBagLayout());
+        bottomPanel.setBackground(Color.WHITE);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+
+        subtotal = new JLabel("SUBTOTAL");
+        subtotal.setFont(new Font("Arial", Font.PLAIN, 17));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        bottomPanel.add(subtotal, gbc);
+
+        subtotalPrice = new JLabel("$12500");
+        subtotalPrice.setFont(new Font("Arial", Font.PLAIN, 17));
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        bottomPanel.add(subtotalPrice, gbc);
+
+        tax = new JLabel("IMPUESTO AL CONSUMO 8%");
+        tax.setFont(new Font("Arial", Font.PLAIN, 17));
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        bottomPanel.add(tax, gbc);
+
+        taxPrice = new JLabel("$1320");
+        taxPrice.setFont(new Font("Arial", Font.PLAIN, 17));
+        gbc.gridx = 1;
+        bottomPanel.add(taxPrice, gbc);
+
+        total = new JLabel("TOTAL");
+        total.setFont(new Font("Arial", Font.PLAIN, 26));
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        bottomPanel.add(total, gbc);
+
+        totalPrice = new JLabel("13820");
+        totalPrice.setFont(new Font("Arial", Font.PLAIN, 26));
+        gbc.gridx = 1;
+        bottomPanel.add(totalPrice, gbc);
+
+        cancel = new JButton("CANCELAR");
+        cancel.setPreferredSize(new Dimension(150, 58));
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.anchor = GridBagConstraints.WEST;
+        bottomPanel.add(cancel, gbc);
+
+        confirm = new JButton("CONFIRMAR");
+        confirm.setPreferredSize(new Dimension(150, 58));
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        bottomPanel.add(confirm, gbc);
+    }
 }

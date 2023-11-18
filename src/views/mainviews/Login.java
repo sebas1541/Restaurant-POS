@@ -1,13 +1,13 @@
-package views.mainViews;
+package views.mainviews;
 
-import views.ownClasses.ResizeImage;
+import views.ownclass.ResizeImage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
 
-public class LogInView extends JPanel {
+public class Login extends JPanel {
 
     private JLabel logoLabel;
     private JLabel usernameLabel;
@@ -17,12 +17,11 @@ public class LogInView extends JPanel {
     private JPasswordField passwordField;
     private JButton submitButton;
     private GridBagConstraints gbc;
-    public LogInView(ActionListener ac) {
+    public Login(ActionListener ac) {
         initComponents(ac);    }
     public void initComponents(ActionListener ac){
         this.setLayout(new GridBagLayout());
         gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
         createLogoLabel();
         createPasswordField();
         createPasswordLabel();
@@ -36,8 +35,6 @@ public class LogInView extends JPanel {
         logoLabel = new JLabel(icon);
         GridBagConstraints gbcI = new GridBagConstraints();
         gbcI.insets = new Insets(0, 70, 0, 0);
-        //gbcI.gridy =0;
-        //gbcI.gridx =0;
         gbcI.anchor = GridBagConstraints.NORTH;
         this.add(logoLabel,gbcI);
     }

@@ -1,6 +1,6 @@
 package views.panels;
 
-import views.ownClasses.ResizeImage;
+import views.ownclass.ResizeImage;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,5 +1,5 @@
 package views.panels;
-import views.ownClasses.ResizeImage;
+import views.ownclass.ResizeImage;
 
 
 import javax.swing.*;
@@ -47,10 +47,10 @@ public class LeftPanel extends JPanel {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 0, 10, 0);
 
-        add(createButtonPanel("INICIO", "src/resources/OrderViewResources/LeftPanelIcons/Home Button Not Clicked.png", BUTTON_TEXT_COLOR), gbc, 0);
-        add(createButtonPanel("ORDEN", "src/resources/OrderViewResources/LeftPanelIcons/Order Button Clicked.png", new Color(236, 90, 90)), gbc, 1);
-        add(createButtonPanel("HISTORIAL", "src/resources/OrderViewResources/LeftPanelIcons/OrderHistory Button Not Clicked.png", BUTTON_TEXT_COLOR), gbc, 2);
-        add(createButtonPanel("CONFIG.", "src/resources/OrderViewResources/LeftPanelIcons/Config Button Not Clicked.png", BUTTON_TEXT_COLOR), gbc, 3);
+        add(createButtonPanel("INICIO", "src/resources/orderview/Home Button Not Clicked.png", BUTTON_TEXT_COLOR), gbc, 0);
+        add(createButtonPanel("ORDEN", "src/resources/orderview/Order Button Clicked.png", new Color(236, 90, 90)), gbc, 1);
+        add(createButtonPanel("HISTORIAL", "src/resources/orderview/OrderHistory Button Not Clicked.png", BUTTON_TEXT_COLOR), gbc, 2);
+        add(createButtonPanel("CONFIG.", "src/resources/orderview/Config Button Not Clicked.png", BUTTON_TEXT_COLOR), gbc, 3);
 
     }
 }

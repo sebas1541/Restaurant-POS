@@ -1,8 +1,8 @@
 package views.panels;
-
-import views.ownClasses.ResizeImage;
-
+import presenter.HotDogDTO;
 import javax.swing.*;
+import java.util.List;
+
 import java.awt.*;
 
 public class CenterPanel extends JPanel {
@@ -13,7 +13,7 @@ public class CenterPanel extends JPanel {
     public CenterPanel() {
         setLayout(new BorderLayout());
         initializeNavigationPanel();
-        initializeItemsPanel();
+        initItems();
 
         add(navigationPanel, BorderLayout.SOUTH);
         add(itemsPanel, BorderLayout.NORTH);
@@ -29,28 +29,31 @@ public class CenterPanel extends JPanel {
         additiveButton = createButton("ADITIVOS", null, new Dimension(150, 58));
         drinkButton = createButton("BEBIDAS", null, new Dimension(150, 58));
 
+        this.setBackground(Color.WHITE);
+        this.setBorder(BorderFactory.createEmptyBorder(0,17,0,17));
         addToPanel(navigationPanel, hotDogButton, gbc, 0);
         addToPanel(navigationPanel, additiveButton, gbc, 1);
         addToPanel(navigationPanel, drinkButton, gbc, 2);
     }
 
-    private void initializeItemsPanel() {
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-
-        itemsPanel = new JPanel();
+    private void initItems() {
+        itemsPanel = new JPanel(new GridLayout(0, 4, 15, 30));
         itemsPanel.setBackground(Color.WHITE);
+    }
 
-        ImageIcon itemImage = new ImageIcon("src/resources/HotDogPhotos/PerroClasico.png");
-        itemImage = new ResizeImage().resize(itemImage, 203, 143);
-
-        addHotDogItem("CLÁSICO", "10.500", itemImage);
+    public void populateHotDogs(List<HotDogDTO> hotDogDTOs) {
+        itemsPanel.removeAll();
+        for (HotDogDTO dto : hotDogDTOs) {
+            addHotDogItem(dto.getName(), dto.getPrice(), dto.getImage());
+        }
+        itemsPanel.revalidate();
+        itemsPanel.repaint();
     }
 
     private void addHotDogItem(String name, String price, ImageIcon image) {
         JPanel item = new JPanel(new BorderLayout());
         JLabel itemImageLabel = new JLabel(image);
+        itemImageLabel.setBackground(Color.WHITE);
         itemImageLabel.setHorizontalAlignment(JLabel.CENTER);
 
         JPanel itemInfoPanel = createItemInfoPanel(name, price);
@@ -62,8 +65,9 @@ public class CenterPanel extends JPanel {
 
     private JPanel createItemInfoPanel(String name, String price) {
         JPanel itemInfoPanel = createPanelWithGridBag(new Color(216, 230, 233));
+        itemInfoPanel.setPreferredSize(new Dimension(120,120));
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.insets = new Insets(5, 15, 15, 5);
 
         JLabel itemName = createLabel(name, new Font("Arial", Font.PLAIN, 12));
         JLabel itemPrice = createLabel(price, new Font("Arial", Font.PLAIN, 12));
