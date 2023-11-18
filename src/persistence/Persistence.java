@@ -55,4 +55,12 @@ public class Persistence {
 
     }
 
+    public ArrayList<String> getDatos() {
+        return datos;
+    }
+
+    public void setDatos(ArrayList<String> datos) {
+        this.datos = datos;
+    }
+
 }

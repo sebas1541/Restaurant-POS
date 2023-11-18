@@ -1,31 +1,30 @@
 package views.mainviews;
 
 
-import views.mainviews.LogInView;
-import views.mainviews.Login;
-import views.mainviews.ViewAdministrator;
-
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 
 public class View extends JFrame{
-    private Login panelLogin;
+    private MainWindow panelMainWindow;
     private ViewAdministrator panelInfoInventory;
-    private LogInView panelLV;
+    private Login panelLogin;
     private JPanel panel;
     public View(ActionListener ac) {
         this.setUpFrame();
         this.initComponents(ac);
     }
+    public void notifyWarning(String mesagge) {
+        JOptionPane jo = new JOptionPane();
+        jo.showMessageDialog(null,mesagge,"",JOptionPane.ERROR_MESSAGE);
+    }
     public void initComponents(ActionListener ac) {
         addHeader(ac);
         this.setVisible(true);
-        createPanelLogin(ac);
+        createPanelMainWindow(ac);
         createPanelInventoryAdm(ac);
-        createPanelLV(ac);
+        createPanelLogin(ac);
     }
     public void setUpFrame() {
         this.setTitle("Punto de venta");
@@ -34,18 +33,18 @@ public class View extends JFrame{
         this.setLayout(new BorderLayout());
         this.setLocationRelativeTo(null);
     }
-    public void createPanelLogin(ActionListener ac) {
+    public void createPanelMainWindow(ActionListener ac) {
         setPanel();
-        panelLogin = new Login(ac);
-        panel.add(panelLogin);
+        panelMainWindow = new MainWindow(ac);
+        panel.add(panelMainWindow);
         panel.revalidate();
         panel.repaint();
         repaint();
     }
-    public void createPanelLV(ActionListener ac) {
+    public void createPanelLogin(ActionListener ac) {
         setPanel();
-        panelLV = new LogInView(ac);
-        panel.add(panelLV);
+        panelLogin = new Login(ac);
+        panel.add(panelLogin);
         panel.revalidate();
         panel.repaint();
         repaint();
@@ -64,21 +63,21 @@ public class View extends JFrame{
         panel = new JPanel();
         panel.setLayout(new BorderLayout());
         this.getContentPane().add(panel, BorderLayout.CENTER);
-        panelLogin = new Login(ac);
-        panel.add(panelLogin, BorderLayout.CENTER);
+        panelMainWindow = new MainWindow(ac);
+        panel.add(panelMainWindow, BorderLayout.CENTER);
     }
     private void setPanel() {
-        if (panelLogin != null) {
-            panelLogin.setVisible(false);
-            remove(panelLogin);
+        if (panelMainWindow != null) {
+            panelMainWindow.setVisible(false);
+            remove(panelMainWindow);
         }
         if (panelInfoInventory != null) {
             panelInfoInventory.setVisible(false);
             remove(panelInfoInventory);
         }
-        if (panelLV != null) {
-            panelLV.setVisible(false);
-            remove(panelLV);
+        if (panelLogin != null) {
+            panelLogin.setVisible(false);
+            remove(panelLogin);
         }
     }
 }

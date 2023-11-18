@@ -4,7 +4,8 @@ package presenter;
 import model.Inventory;
 import persistence.Persistence;
 
-import views.mainviews.LogInView;
+import views.mainviews.Login;
+import views.mainviews.MainWindow;
 import views.mainviews.View;
 import views.mainviews.ViewAdministrator;
 
@@ -17,7 +18,9 @@ public class MainPresenter implements ActionListener {
     protected Inventory inv;
 
     protected ViewAdministrator viewAdm;
-    protected LogInView viewLogin;
+    protected Login viewLogin;
+    protected MainWindow mainWindow;
+
 
 
     public MainPresenter() {
@@ -25,7 +28,8 @@ public class MainPresenter implements ActionListener {
         pr = new Persistence();
         inv=new Inventory();
         viewAdm = new ViewAdministrator(this);
-        viewLogin = new LogInView(this);
+        viewLogin = new Login(this);
+        mainWindow = new MainWindow(this);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
