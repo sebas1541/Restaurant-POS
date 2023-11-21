@@ -9,17 +9,10 @@ public class HotDog {
     private List<Ingredient> ingredients;
     private String path;
 
-    public HotDog(String name, int price, List<Ingredient> ingredients, String imgFilePath){
-        this.name = name;
-        this.price = price;
-        ingredients = new ArrayList<Ingredient>();
-        this.ingredients = ingredients;
-        this.path = imgFilePath;
-    }
+
 
     public HotDog (String name, ArrayList<Ingredient> iL, int price){
         this.name = name;
-        this.ingredients  = new ArrayList<Ingredient>();
         this.ingredients = iL;
         this.price = price;
     }

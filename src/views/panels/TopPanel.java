@@ -55,7 +55,7 @@ public class TopPanel extends JPanel {
 
     private void updateDateTime(JLabel label) {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd 'de' MMMM 'de' yyyy HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd 'de' MMM 'de' yyyy HH:mm:ss");
         String dateTimeString = LocalDateTime.now().format(formatter);
         label.setText(dateTimeString);
 
