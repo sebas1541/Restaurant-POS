@@ -15,12 +15,12 @@ public class PaymentView extends JPanel {
 
 
 
-        //leftPanel = new LeftPanel();
-        //topPanel = new TopPanel();
+        leftPanel = new LeftPanel();
+        topPanel = new TopPanel();
 
         this.setLayout(new BorderLayout());
-        //this.add(topPanel, BorderLayout.NORTH);
-        //this.add(leftPanel, BorderLayout.WEST);
+        this.add(topPanel, BorderLayout.NORTH);
+        this.add(leftPanel, BorderLayout.WEST);
 
 
 
