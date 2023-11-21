@@ -17,7 +17,6 @@ public class OrderView extends JPanel {
     private TopPanel topPanel;
     private LeftPanel leftPanel;
     private CenterPanel centerPanel;
-    private ImageIcon companyIcon;
     private JPanel rightPanel;
     private JPanel rightTop, rightCenter, rightBottom, itemSelectedPanel;
     private JLabel orderLabel, orderNumberLabel, customerLabel, customerNameLabel;
