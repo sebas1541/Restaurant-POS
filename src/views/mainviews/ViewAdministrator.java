@@ -1,14 +1,10 @@
 package views.mainviews;
 
-import model.Ingredient;
-
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.sql.SQLOutput;
-import java.util.ArrayList;
 
 public class ViewAdministrator extends JPanel {
     private JTable jTable;
@@ -20,8 +16,7 @@ public class ViewAdministrator extends JPanel {
     private JButton goBack;
     private JLabel title;
     private GridBagConstraints gbc;
-    private DefaultTableModel table;
-
+    private JScrollPane scrollPane;
     public ViewAdministrator(ActionListener ac) {
         this.setBackground(Color.white);
         initComponents(ac);
@@ -46,24 +41,21 @@ public class ViewAdministrator extends JPanel {
     }
 
     public void createJTable() {
-        jTable = new JTable(createTable());
-        JScrollPane scroll = new JScrollPane(jTable);
+        jTable = new JTable();
+        scrollPane = new JScrollPane(jTable);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         jTable.setBackground(Color.white);
         jTable.setFont(new Font("century", Font.BOLD, 16));
-        jTable.setPreferredSize(new Dimension(500,300));
+        jTable.setPreferredSize(new Dimension(500,420));
         gbc.insets = new Insets(0,0,20,0);
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.anchor = GridBagConstraints.CENTER;
-        this.add(scroll, gbc);
+        this.add(scrollPane, gbc);
     }
-    public DefaultTableModel createTable(){
-        table = new DefaultTableModel();
-        table.addColumn("Ingrediente");
-        table.addColumn("Cantidad");
-        return table;
+    public void updateTable(DefaultTableModel table){
+        jTable.setModel(table);
     }
-
     public void createJLabelTitle() {
         title = new JLabel("Inventario");
         title.setFont(new Font("century", Font.BOLD, 24));
@@ -113,12 +105,12 @@ public class ViewAdministrator extends JPanel {
         this.add(quantity, gbc);
     }
     public void createJButtonSend(ActionListener ac) {
-        modify = new JButton("Modificar");
-        modify.setBackground(new Color(241,88,46));
-        modify.setPreferredSize(new Dimension(100,50));
-        modify.addActionListener(ac);
-        gbc.gridx = 1;
-        gbc.gridy = 7;
+        modify = new JButton("Modificar");    //Se inicializa el boton "Modificar", el cual permite cambiar la cantidad de un producto del inventario
+        modify.setBackground(new Color(241,88,46));  //se le asigna un color de fondo
+        modify.setPreferredSize(new Dimension(100,50));    //le asignamos un ancho y alto al boton
+        modify.addActionListener(ac);  //Agregamos un Action Listener
+        gbc.gridx = 1;  //Asignamos la posición en x de la ubicacion del boton, por medio de un GridBagConstrains
+        gbc.gridy = 7;   //Asignamos la posición en x de la ubicacion del boton, por medio de un GridBagConstrains
         gbc.gridwidth = 3;
         gbc.insets = new Insets(0, 0, 30, 0);
         this.add(modify, gbc);
@@ -135,15 +127,40 @@ public class ViewAdministrator extends JPanel {
         this.add(goBack, gbc);
     }
 
-    public DefaultTableModel getTable() {
-        return table;
+    public JTable getjTable() {
+        return jTable;
     }
 
-    public void setTable(DefaultTableModel table) {
-        this.table = table;
+    public JLabel getLabelOptionToModify() {
+        return labelOptionToModify;
     }
 
-    public static void main(String[] args) {
-        new View(null).createPanelInventoryAdm(null);
+    public JTextField getOptionToModify() {
+        return optionToModify;
     }
+
+    public JLabel getQuantityLabel() {
+        return quantityLabel;
+    }
+
+    public JTextField getQuantity() {
+        return quantity;
+    }
+
+    public JButton getModify() {
+        return modify;
+    }
+
+    public JButton getGoBack() {
+        return goBack;
+    }
+
+    public JLabel getTitle() {
+        return title;
+    }
+
+    public GridBagConstraints getGbc() {
+        return gbc;
+    }
+
 }

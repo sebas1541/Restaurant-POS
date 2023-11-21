@@ -1,6 +1,8 @@
 package views.mainviews;
 
 
+import presenter.VerificationPresenter;
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -8,6 +10,7 @@ import javax.swing.*;
 
 public class View extends JFrame{
     private MainWindow panelMainWindow;
+    private PaymentView paymentView;
     private ViewAdministrator panelInfoInventory;
     private Login panelLogin;
     private JPanel panel;
@@ -31,11 +34,30 @@ public class View extends JFrame{
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-
+    public void createPanelInventoryAdm(VerificationPresenter ac) {
+        setPanel();
+        panelInfoInventory = ac.getViewAdm();
+        ac.cargarDatos();
+        panelInfoInventory.revalidate();
+        panelInfoInventory.repaint();
+        panel.add(panelInfoInventory);
+        panel.revalidate();
+        panel.repaint();
+        repaint();
+    }
     public void createPanelMainWindow(ActionListener ac) {
         setPanel();
         panelMainWindow = new MainWindow(ac);
         panel.add(panelMainWindow);
+        panel.revalidate();
+        panel.repaint();
+        repaint();
+    }
+
+    public void createPaymentPanel(ActionListener ac) {
+        setPanel();
+        paymentView = new PaymentView(ac);
+        panel.add(paymentView);
         panel.revalidate();
         panel.repaint();
         repaint();
@@ -60,15 +82,6 @@ public class View extends JFrame{
         repaint();
     }
 
-    public void createPanelInventoryAdm(ActionListener ac) {
-        setPanel();
-        panelInfoInventory = new ViewAdministrator(ac);
-        panel.add(panelInfoInventory);
-        panel.revalidate();
-        panel.repaint();
-        repaint();
-    }
-
     private void addHeader(ActionListener ac) {
         panel = new JPanel();
         panel.setLayout(new BorderLayout());
@@ -88,6 +101,10 @@ public class View extends JFrame{
         if (panelLogin != null) {
             panelLogin.setVisible(false);
             remove(panelLogin);
+        }
+        if (orderView != null) {
+            orderView.setVisible(false);
+            remove(orderView);
         }
     }
     public String user(){
