@@ -27,6 +27,7 @@ public class CenterPanel extends JPanel {
         gbc.insets = new Insets(20, 5, 20, 5);
 
         hotDogButton = createButton("PERROS", new Color(236, 90, 90), new Dimension(150, 58));
+        hotDogButton.addActionListener(ac);
 
         this.setBackground(Color.WHITE);
         this.setBorder(BorderFactory.createEmptyBorder(0,17,0,17));

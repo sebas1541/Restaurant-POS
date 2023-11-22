@@ -66,7 +66,7 @@ public class OrderView extends JPanel {
         rightTop.add(orderLabel, gbc);
 
 
-        customerLabel = new JLabel("CLIENTE:");
+        customerLabel = new JLabel("CLIENTE");
         customerLabel.setFont(new Font("Arial", Font.BOLD, 14));
         customerLabel.setForeground(Color.BLACK);
         gbc.gridx = 0;
@@ -74,7 +74,7 @@ public class OrderView extends JPanel {
         gbc.anchor = GridBagConstraints.WEST;
         rightTop.add(customerLabel, gbc);
 
-        customerNameLabel = new JLabel("SEBASTIAN CANON CASTELLANOS");
+        customerNameLabel = new JLabel("");
         customerNameLabel.setFont(new Font("Arial", Font.BOLD, 14));
         customerNameLabel.setForeground(new Color(236, 90, 90));
         gbc.gridx = 1;
@@ -92,7 +92,6 @@ public class OrderView extends JPanel {
         rightCenter = new JScrollPane(innerPanel);
         rightCenter.setBackground(Color.WHITE);
 
-        repaintPanel();
     }
 
     public void addHotdogItem(String name, String price, String quantity) {
@@ -186,18 +185,12 @@ public class OrderView extends JPanel {
         gbc.anchor = GridBagConstraints.EAST;
         rightBottom.add(totalPrice, gbc);
 
-        cancel = new JButton("CANCELAR");
-        cancel.addActionListener(ac);
-        cancel.setPreferredSize(new Dimension(150, 58));
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        gbc.anchor = GridBagConstraints.WEST;
-        rightBottom.add(cancel, gbc);
 
         confirm = new JButton("CONFIRMAR");
         confirm.addActionListener(ac);
         confirm.setPreferredSize(new Dimension(150, 58));
         gbc.gridx = 1;
+        gbc.gridy = 3;
         gbc.anchor = GridBagConstraints.EAST;
         rightBottom.add(confirm, gbc);
     }

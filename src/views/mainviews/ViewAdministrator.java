@@ -204,6 +204,8 @@ public class ViewAdministrator extends JPanel {
         this.add(goBack, gbc);
     }
 
+
+
     /**
      * metodo que retorna el Jtable creado anteriormente
      *

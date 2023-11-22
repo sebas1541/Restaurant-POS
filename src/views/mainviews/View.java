@@ -35,7 +35,7 @@ public class View extends JFrame{
     }
     public void createPanelInventoryAdm(VerificationPresenter ac) {
         setPanel();
-        panelInfoInventory = ac.getViewAdm();
+        panelInfoInventory = new ViewAdministrator(ac);
         ac.cargarDatos();
         panelInfoInventory.revalidate();
         panelInfoInventory.repaint();

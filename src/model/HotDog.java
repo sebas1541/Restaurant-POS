@@ -1,5 +1,7 @@
 package model;
 
+import persistence.Persistence;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,7 @@ public class HotDog {
     private int price;
     private List<Ingredient> ingredients;
     private String path;
+
 
 
 
@@ -58,6 +61,9 @@ public class HotDog {
     public void setImgFilePath(String path) {
         this.path = path;
     }
+
+
+
 
     @Override
     public String toString() {

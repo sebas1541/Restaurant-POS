@@ -1,5 +1,8 @@
 package persistence;
 
+import model.Order;
+import presenter.VerificationPresenter;
+
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
@@ -10,8 +13,10 @@ import java.util.Properties;
 
 public class Persistence {
     private ArrayList<String> datos;
+    private Order order;
 
     public Persistence() {
+
         datos = new ArrayList<>();
     }
 
@@ -54,6 +59,20 @@ public class Persistence {
         }
 
     }
+
+    public void writeInvoiceToFile(String T) {
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("src/data/invoice.txt"));
+            writer.write(T);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 
     public ArrayList<String> getDatos() {
         return datos;

@@ -21,13 +21,15 @@ public class PaymentView extends JPanel {
     JLabel subTotal;
     JLabel subTotalText;
     JLabel tax, total, taxText, totalTextl;
+    JButton cancel, pay;
+
 
 
     public PaymentView(ActionListener ac) {
         initItems(ac);
     }
 
-    public void initCenterPanel() {
+    public void initCenterPanel(ActionListener ac) {
         centerPanel = new JPanel(new BorderLayout());
         centerPanel.setBackground(new Color(216, 230, 233));
         centerPanel.setLayout(new GridBagLayout());
@@ -128,6 +130,28 @@ public class PaymentView extends JPanel {
         gbc.anchor = GridBagConstraints.WEST;
         centerPanel.add(totalTextl, gbc);
 
+        cancel = new JButton("CANCELAR");
+        cancel.setSize(new Dimension(150, 58));
+        cancel.setBackground(new Color(216, 230, 233));
+
+        cancel.addActionListener(ac);
+
+        gbc.gridy = 6;
+        gbc.gridx = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        centerPanel.add(cancel, gbc);
+
+        pay = new JButton("PAGAR");
+        pay.setSize(new Dimension(150, 58));
+        pay.setBackground(new Color(236, 90, 90));
+
+        pay.addActionListener(ac);
+        gbc.gridy = 6;
+        gbc.gridx = 2;
+        gbc.anchor = GridBagConstraints.WEST;
+        centerPanel.add(pay, gbc);
+
+
 
     }
 
@@ -154,7 +178,7 @@ public class PaymentView extends JPanel {
     }
 
     public void initItems(ActionListener ac) {
-        initCenterPanel();
+        initCenterPanel(ac);
         leftPanel = new LeftPanel(ac);
         topPanel = new TopPanel();
 

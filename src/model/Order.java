@@ -2,7 +2,9 @@ package model;
 
 import javax.swing.*;
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Order {
 
@@ -11,6 +13,10 @@ public class Order {
     private String customerName;
     private int id_Order;
     private double consumption_Tax;
+
+    private static final String COMPANY_NAME = "DogZilla HotDogs";
+    private static final String COMPANY_LOCATION = "Tunja, Boyacá";
+    private static final double TAX_RATE = 0.08; // 8% Tax rate
 
     public Order (String customerName){
         hotDogList = new ArrayList<HotDog>();
@@ -101,14 +107,29 @@ public class Order {
         return text;
     }
 
-    public String textOrder (){
+    public String textOrder() {
         tax();
 
-        String text = "El numero de orden es: " + id_Order + "\nEl pedido se encuentra a nombre de: " + customerName + "\n Los productos son: \n";
-        for (int i = 0; i < hotDogList.size(); i++) {
-            text += "- HOTDOG " + hotDogList.get(i).getName()  + "        Precio: " + hotDogList.get(i).getPrice() + "\n";
+        StringBuilder invoice = new StringBuilder();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String currentTime = dateFormat.format(new Date());
+
+        invoice.append("Company: ").append(COMPANY_NAME)
+                .append("\nLocation: ").append(COMPANY_LOCATION)
+                .append("\nTime: ").append(currentTime)
+                .append("\nOrder Number: ").append(id_Order)
+                .append("\nCustomer Name: ").append(customerName)
+                .append("\nProducts:\n");
+
+        for (HotDog hotDog : hotDogList) {
+            invoice.append("- HOTDOG ").append(hotDog.getName())
+                    .append("        Price: ").append(hotDog.getPrice()).append("\n");
         }
-        text += "\n El subtotal es:     "+ sum_Price() + "\n El impuesto al consumo a pagar es:     " + consumption_Tax  + " (8%) " +"\n El precio total de su orden es:     " + total_price();
-        return text;
+
+        invoice.append("\nSubtotal: ").append(sum_Price())
+                .append("\nConsumption Tax (8%): ").append(consumption_Tax)
+                .append("\nTotal Order Price: ").append(total_price());
+
+        return invoice.toString();
     }
 }

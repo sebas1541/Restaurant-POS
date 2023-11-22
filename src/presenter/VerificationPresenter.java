@@ -1,12 +1,11 @@
 package presenter;
 
 
-import model.Ingredient;
-import model.Inventory;
-import model.Order;
+import model.*;
 import persistence.Persistence;
 import views.mainviews.*;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +19,9 @@ public class VerificationPresenter implements ActionListener {
     private Login viewLogin;
     private MainWindow mainWindow;
     private Order order;
+    private HotDogManager hotDogManager;
+
+
 
 
 
@@ -37,24 +39,41 @@ public class VerificationPresenter implements ActionListener {
         viewLogin = new Login(this);
         mainWindow = new MainWindow(this);
         order = new Order(null);
+        hotDogManager = new HotDogManager();
+
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Administrador")) {
+            /**Si se presiona el botón "Administrador", se crea un panel
+             * para la verificacion de datos*/
             view.createPanelLogin(this);
         }
         if (e.getActionCommand().equals("Enviar")) {
+            /**Si se presiona el botón "Submint", se comprueba si el usuario
+             * y contraseña son correctos en el metodo dataVerification*/
             dataVerification();
         }
         if (e.getActionCommand().equals("Empleado")) {
+            /**Si se presiona el botón "Empleado", se crea un panel
+             * para solicitar la orden del cliente*/
             view.createOrderPanel(this);
         }
         if (e.getActionCommand().equals("Modificar")) {
+            /**Al presionar "Modificar", se llama al metodo modifyInventory, el cual
+             * el cual se encarga de dicha lavor*/
             modifyInventory();
+            cargarDatos();
+            view.getPanelInfoInventory().getjTable().revalidate();
+            view.getPanelInfoInventory().getjTable().repaint();
+            view.getPanelInfoInventory().repaint();
+            view.getPanelInfoInventory().revalidate();
         }
         if (e.getActionCommand().equals("Volver")) {
+            /**Al presionar "Volver", se creará la ventana principal, con el fin de
+             * solicitar una nueva orden o volver a ingresar al inventario*/
             view.createPanelMainWindow(this);
 
         }
@@ -112,6 +131,25 @@ public class VerificationPresenter implements ActionListener {
         }
         if (e.getActionCommand().equals("ADMIN")){
             view.createPanelLogin(this);
+        }
+        if (e.getActionCommand().equals("PERROS")){
+            JOptionPane.showMessageDialog(null, hotDogManager.formatHotDogsForDisplay());
+        }
+
+        if (e.getActionCommand().equals("CANCELAR")){
+            order = null;
+            order = new Order(null);
+            view.updateEntirePanel();
+            view.createOrderPanel(this);
+        }
+
+        if (e.getActionCommand().equals("PAGAR")){
+            JOptionPane.showMessageDialog(null, "Estas a punto de hacer el pago y terminar la órden.\n Una vez terminado el pago dale click a ok");
+            printInvoice();
+            view.updateEntirePanel();
+            view.createOrderPanel(this);
+            order = null;
+            order = new Order(null);
         }
 
 
@@ -177,6 +215,10 @@ public class VerificationPresenter implements ActionListener {
         inv.menu(Integer.parseInt(view.optionModify()), Integer.parseInt(view.quantity()));
     }
 
+
+    public void printInvoice(){
+        pr.writeInvoiceToFile(order.textOrder());
+    }
 
     public Order getOrder() {
         return order;

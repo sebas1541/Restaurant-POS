@@ -1,9 +1,17 @@
 package model;
 
+import persistence.Persistence;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class HotDogManager {
+    Persistence persistence;
+
+    public HotDogManager() {
+        this.persistence = new Persistence();
+    }
 
     public HotDog classic() {
         String name = "CLASICO";
@@ -113,6 +121,33 @@ public class HotDogManager {
         HotDog hotDogShredded = new HotDog(name, ing, price);
         return hotDogShredded;
     }
+
+
+
+
+    public String formatHotDogsForDisplay() {
+        StringBuilder displayText = new StringBuilder();
+
+        List<HotDog> hotDogs = Arrays.asList(classic(), dogzilla(), mexican(), colombian(), hawaiian(), italian(), shredded());
+
+        for (HotDog hotDog : hotDogs) {
+            displayText.append(hotDog.getName()).append(": ");
+            for (Ingredient ingredient : hotDog.getIngredients()) {
+                displayText.append(ingredient.getName()).append(", ");
+            }
+
+            if (!hotDog.getIngredients().isEmpty()) {
+                displayText.setLength(displayText.length() - 2);
+            }
+            displayText.append("\n \n");
+        }
+
+        return displayText.toString();
+    }
+
+
+
+
 
     public List<HotDog> getAllHotDogs(){
         List<HotDog> hotDogs = new ArrayList<>();
