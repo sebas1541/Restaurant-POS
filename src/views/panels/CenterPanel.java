@@ -7,10 +7,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+
+/**
+ * Clase CenterPanel para la creación de un panel central en una interfaz gráfica.
+ * Incluye un panel de navegación, botones y un panel de elementos (items).
+ */
 public class CenterPanel extends JPanel {
     private JPanel navigationPanel;
-    private JButton hotDogButton, additiveButton, drinkButton, addButton;
+    private JButton hotDogButton, addButton;
     private JPanel itemsPanel;
+
+    /**
+     * Constructor que inicializa el panel central con los elementos de navegación y los items.
+     *
+     * @param ac ActionListener para manejar eventos de los botones.
+     */
 
     public CenterPanel(ActionListener ac) {
         setLayout(new BorderLayout());
@@ -20,6 +31,15 @@ public class CenterPanel extends JPanel {
         add(itemsPanel, BorderLayout.NORTH);
     }
 
+
+
+    // Métodos privados para inicializar los componentes del panel.
+
+    /**
+     * Inicializa el panel de navegación con botones y estilo.
+     *
+     * @param ac ActionListener para los eventos de los botones.
+     */
     private void initializeNavigationPanel(ActionListener ac) {
         navigationPanel = createPanelWithGridBag(new Color(216, 230, 233));
 
@@ -27,15 +47,12 @@ public class CenterPanel extends JPanel {
         gbc.insets = new Insets(20, 5, 20, 5);
 
         hotDogButton = createButton("PERROS", new Color(236, 90, 90), new Dimension(150, 58));
-        additiveButton = createButton("ADITIVOS", null, new Dimension(150, 58));
-        additiveButton.addActionListener(ac);
-        drinkButton = createButton("BEBIDAS", null, new Dimension(150, 58));
+        hotDogButton.addActionListener(ac);
 
         this.setBackground(Color.WHITE);
         this.setBorder(BorderFactory.createEmptyBorder(0,17,0,17));
         addToPanel(navigationPanel, hotDogButton, gbc, 0);
-        addToPanel(navigationPanel, additiveButton, gbc, 1);
-        addToPanel(navigationPanel, drinkButton, gbc, 2);
+
     }
 
     private void initItems(ActionListener ac) {
@@ -43,7 +60,7 @@ public class CenterPanel extends JPanel {
         itemsPanel.setBackground(Color.WHITE);
 
         String[] hotDogs = {"CLASICO", "DOGZILLA", "MEXICANO", "COLOMBIANO", "HAWAIANO", "ITALIANO", "DESGRANADO"};
-        String[] prices = {"$16.500", "$16.500", "$15.500", "$15.500", "$15.500", "$15.500", "$15.500"};
+        String[] prices = {"$12.500", "$16.500", "$14.900", "$14.900", "$14.900", "$14.900", "$14.900"};
         String[] imagePaths = {"PerroClasico.png", "DogZilla.png", "Mexicano.png", "Colombiano.png", "Hawaiano.png", "Italiano.png", "Desgranado.png"};
 
         for (int i = 0; i < hotDogs.length; i++) {
@@ -101,6 +118,15 @@ public class CenterPanel extends JPanel {
         return itemInfoPanel;
     }
 
+
+    /**
+     * Crea un botón con estilo personalizado.
+     *
+     * @param text Texto del botón.
+     * @param bgColor Color de fondo del botón.
+     * @param size Tamaño del botón.
+     * @return JButton creado.
+     */
     private JButton createButton(String text, Color bgColor, Dimension size) {
         JButton button = new JButton(text);
         if (bgColor != null) {
@@ -110,11 +136,27 @@ public class CenterPanel extends JPanel {
         return button;
     }
 
+    /**
+     * Crea una etiqueta (JLabel) con un estilo de fuente personalizado.
+     *
+     * @param text Texto de la etiqueta.
+     * @param font Fuente de la etiqueta.
+     * @return JLabel creada.
+     */
+
     private JLabel createLabel(String text, Font font) {
         JLabel label = new JLabel(text);
         label.setFont(font);
         return label;
     }
+
+
+    /**
+     * Crea un JPanel utilizando GridBagLayout con un color de fondo específico.
+     *
+     * @param backgroundColor Color de fondo del panel.
+     * @return JPanel creado.
+     */
 
     private JPanel createPanelWithGridBag(Color backgroundColor) {
         JPanel panel = new JPanel(new GridBagLayout());
@@ -122,6 +164,15 @@ public class CenterPanel extends JPanel {
         return panel;
     }
 
+
+    /**
+     * Añade un componente a un panel utilizando GridBagConstraints.
+     *
+     * @param panel Panel al que se añadirá el componente.
+     * @param component Componente a añadir.
+     * @param gbc Configuración de GridBagConstraints.
+     * @param gridx Posición en el eje X dentro del GridBagLayout.
+     */
     private void addToPanel(JPanel panel, Component component, GridBagConstraints gbc, int gridx) {
         gbc.gridx = gridx;
         panel.add(component, gbc);
@@ -131,7 +182,5 @@ public class CenterPanel extends JPanel {
         return addButton;
     }
 
-    public JButton getAdditiveButton() {
-        return additiveButton;
-    }
+
 }
