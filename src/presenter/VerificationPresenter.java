@@ -11,19 +11,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
+/**Presentador principal
+ * Manejo de eventos de los elementos de la vista, conexion de modelo y vista
+ * @author
+ *     David Lotero
+ *     Miguel Avila
+ *     Sebastian Cañon*/
+
 public class VerificationPresenter implements ActionListener {
+
+    /**Referencias de clase
+     *Definimos atributos con tipo de dato clase, para luego usarlos y
+     * acceder a la informacion de dichas clases */
     private View view;
     private Persistence pr;
     private Inventory inv;
-    private ViewAdministrator viewAdm;
-    private Login viewLogin;
-    private MainWindow mainWindow;
     private Order order;
     private HotDogManager hotDogManager;
-
-
-
-
 
 
     public VerificationPresenter() {
@@ -35,13 +39,8 @@ public class VerificationPresenter implements ActionListener {
         view = new View(this);
         pr = new Persistence();
         inv = new Inventory();
-        viewAdm = new ViewAdministrator(this);
-        viewLogin = new Login(this);
-        mainWindow = new MainWindow(this);
         order = new Order(null);
         hotDogManager = new HotDogManager();
-
-
     }
 
     @Override
@@ -178,31 +177,40 @@ public class VerificationPresenter implements ActionListener {
     public void cargarDatos() {
         DefaultTableModel table = new DefaultTableModel();
         int counter=0;
-        inv.splitIngredients();
+        /**Asignacion del numero y nombre de las columnas de la tabla*/
         table.addColumn("Indice");
         table.addColumn("Ingrediente");
         table.addColumn("Cantidad");
-        for (Ingredient ingr : inv.getIngredientList()) {
+        for (Ingredient ingr : inv.getIngredientList2()) {
+            /**Creacion de un arreglo de objetos, el cual contiene la informacion
+             * que se mostrará en cada una de las filas de la tabla*/
             Object[] fila = new Object[3];
             counter++;
             fila[0] = counter;
             fila[1] = ingr.getName();
             fila[2] = ingr.getQuantity();
+            /**Asignacion del arreglo a las filas de la tabla */
             table.addRow(fila);
         }
-
+        /**Metodo de la vista que solicita la tabla creada, y la almacena*/
         view.getPanelInfoInventory().updateTable(table);
     }
 
+
+    /**Metodo para cargar los datos de un arreglo en una DefaulTableModel*/
+    /**Lectura del archivo que contiene el usuario y contraseña del administrador*/
     public void dataVerification() {
         pr.crearPropertiesFile();
         String nombreUsuario = "";
         String password = "";
         nombreUsuario = view.user();
+        /**Verificacion del nombre de usuario*/
         if (pr.getDatos().get(0).equals(nombreUsuario)) {
             password = view.password();
+            /**Verificacion de contraseña*/
             if (pr.getDatos().get(1).equals(password)) {
                 view.createPanelInventoryAdm(this);
+
             } else {
                 view.notifyWarning("La clave ingresada es incorrecta");
             }
@@ -211,8 +219,24 @@ public class VerificationPresenter implements ActionListener {
         }
     }
 
+    /**Metodo para modificar el inventario
+     *@exception NumberFormatException       puede romperce el programa si entra cualquier cosa
+     * que no sea un entero*/
     public void modifyInventory() {
-        inv.menu(Integer.parseInt(view.optionModify()), Integer.parseInt(view.quantity()));
+        int quantity=0;
+        int option=0;
+        try {
+            option = Integer.parseInt(view.optionModify());
+            quantity = Integer.parseInt(view.quantity());
+            if(option>0 && option<=25) {
+                inv.menu(option, quantity);
+            }else{
+                view.notifyWarning("Ingrese un numero entero valido");
+            }
+
+        }catch (NumberFormatException e){
+            view.notifyWarning("Ingrese un numero entero valido");
+        }
     }
 
 
@@ -224,7 +248,5 @@ public class VerificationPresenter implements ActionListener {
         return order;
     }
 
-    public ViewAdministrator getViewAdm() {
-        return viewAdm;
-    }
+
 }

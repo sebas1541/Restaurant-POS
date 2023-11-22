@@ -1,22 +1,17 @@
 package persistence;
 
-import model.Order;
-import presenter.VerificationPresenter;
+import model.Ingredient;
+import model.Inventory;
 
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
+import javax.json.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Properties;
 
 public class Persistence {
     private ArrayList<String> datos;
-    private Order order;
 
     public Persistence() {
-
         datos = new ArrayList<>();
     }
 
@@ -33,9 +28,31 @@ public class Persistence {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
         return ingredientsArray;
     }
+    public void writeIngredientsFile(ArrayList<Ingredient> ingredient) {
+        JsonObjectBuilder objcontructor = Json.createObjectBuilder();
+        JsonArrayBuilder arrayJson = Json.createArrayBuilder();
+        for (int i = 0; i < ingredient.size(); i++) {
+            for (Ingredient ingr : ingredient) {
+                JsonObjectBuilder bob = Json.createObjectBuilder()
+                        .add("Ingrediente", ingr.getName())
+                        .add("Cantidad", ingr.getQuantity());
+                arrayJson.add(bob);
+            }
+            objcontructor.add("Ingredients", arrayJson);
+        }
+        JsonObject rutJsonObject = objcontructor.build();
+
+        try (FileWriter writer = new FileWriter("src/data/Ingredients.json", true)) {
+            JsonWriter jsonWriter = Json.createWriter(writer);
+            jsonWriter.writeObject(rutJsonObject);
+            jsonWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void crearPropertiesFile() {
         File archivo = new File("src/data/userPassword.properties");
@@ -72,8 +89,6 @@ public class Persistence {
     }
 
 
-
-
     public ArrayList<String> getDatos() {
         return datos;
     }
@@ -81,5 +96,4 @@ public class Persistence {
     public void setDatos(ArrayList<String> datos) {
         this.datos = datos;
     }
-
 }
