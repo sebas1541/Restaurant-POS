@@ -9,6 +9,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * Clase PaymentView para la vista de pago en una interfaz gráfica.
+ * Combina paneles superiores, izquierdos y centrales para mostrar la información de pago.
+ */
+
 public class PaymentView extends JPanel {
     LeftPanel leftPanel;
     TopPanel topPanel;
@@ -23,12 +28,26 @@ public class PaymentView extends JPanel {
     JLabel tax, total, taxText, totalTextl;
     JButton cancel, pay;
 
+    // Componentes para mostrar detalles de la orden y realizar acciones como pagar o cancelar.
+    // Implementación de constructores y métodos.
+
+    /**
+     * Constructor que inicializa los componentes de la vista de pago.
+     *
+     * @param ac ActionListener para manejar eventos.
+     */
+
 
 
     public PaymentView(ActionListener ac) {
         initItems(ac);
     }
 
+    /**
+     * Inicializa el panel central con todos los componentes para la vista de pago.
+     *
+     * @param ac ActionListener para los eventos de los botones.
+     */
     public void initCenterPanel(ActionListener ac) {
         centerPanel = new JPanel(new BorderLayout());
         centerPanel.setBackground(new Color(216, 230, 233));
@@ -176,6 +195,14 @@ public class PaymentView extends JPanel {
     public JTextArea getDogPrices() {
         return dogPrices;
     }
+
+    // Métodos para obtener información de impuestos, totales y otros elementos.
+
+    /**
+     * Inicializa los componentes principales de la vista de pago.
+     *
+     * @param ac ActionListener para los eventos de los botones.
+     */
 
     public void initItems(ActionListener ac) {
         initCenterPanel(ac);

@@ -1,15 +1,15 @@
 Company: DogZilla HotDogs
 Location: Tunja, Boyacá
-Time: 21/11/2023 22:39:28
+Time: 21/11/2023 22:40:22
 Order Number: 0
 Customer Name: null
 Products:
 - HOTDOG CLASICO        Price: 12500
-- HOTDOG CLASICO        Price: 12500
 - HOTDOG DOGZILLA        Price: 16500
 - HOTDOG MEXICANO        Price: 15500
 - HOTDOG COLOMBIANO        Price: 14900
+- HOTDOG DESGRANADO        Price: 14900
 
-Subtotal: 71900.0
-Consumption Tax (8%): 5752.0
-Total Order Price: 77652.0
+Subtotal: 74300.0
+Consumption Tax (8%): 5944.0
+Total Order Price: 80244.0

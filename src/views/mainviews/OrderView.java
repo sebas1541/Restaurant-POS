@@ -10,6 +10,13 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 
+
+
+/**
+ * Clase OrderView para la vista principal de una orden en una interfaz gráfica.
+ * Combina paneles superiores, izquierdos, centrales y derechos para mostrar la información de la orden.
+ */
+
 public class OrderView extends JPanel {
 
 
@@ -29,11 +36,21 @@ public class OrderView extends JPanel {
 
 
 
+    /**
+     * Constructor que inicializa los componentes de la vista.
+     *
+     * @param ac ActionListener para manejar eventos.
+     */
+
     public OrderView(ActionListener ac) {
         this.initComponents(ac);
     }
 
-
+    /**
+     * Inicializa el panel derecho con sus componentes y estilo.
+     *
+     * @param ac ActionListener para los eventos de los botones.
+     */
 
     private void initRight(ActionListener ac) {
         setLayout(new BorderLayout());
@@ -49,6 +66,10 @@ public class OrderView extends JPanel {
 
         repaint();
     }
+
+    /**
+     * Crea y configura el panel superior derecho.
+     */
 
     private void createRightTopPanel() {
         rightTop = new JPanel(new GridBagLayout());
@@ -84,6 +105,10 @@ public class OrderView extends JPanel {
         repaintPanel();
     }
 
+
+    /**
+     * Crea y configura el panel central derecho con un JScrollPane.
+     */
     private void createRightCenterPanel() {
         innerPanel = new JPanel();
         innerPanel.setLayout(new BoxLayout(innerPanel, BoxLayout.Y_AXIS));
@@ -94,11 +119,28 @@ public class OrderView extends JPanel {
 
     }
 
+    /**
+     * Añade un item de hot dog al panel de pedidos.
+     *
+     * @param name Nombre del hot dog.
+     * @param price Precio del hot dog.
+     * @param quantity Cantidad del hot dog.
+     */
+
     public void addHotdogItem(String name, String price, String quantity) {
         setupHotDogInfoPanel(innerPanel, name, price, quantity);
         repaintPanel();
     }
 
+
+    /**
+     * Configura un panel para mostrar la información de un hot dog en el pedido.
+     *
+     * @param panel Panel donde se añadirá la información del hot dog.
+     * @param name Nombre del hot dog.
+     * @param price Precio del hot dog.
+     * @param quantity Cantidad del hot dog.
+     */
     private void setupHotDogInfoPanel(JPanel panel, String name, String price, String quantity) {
         JPanel hotDogPanel = new JPanel(new GridBagLayout());
         hotDogPanel.setBackground(new Color(216, 230, 233));
@@ -135,12 +177,23 @@ public class OrderView extends JPanel {
     }
 
 
+    /**
+     * Repinta el panel para actualizar la visualización.
+     */
+
     public void repaintPanel() {
         this.revalidate();
         this.repaint();
     }
 
 
+
+    /**
+     * Actualiza la información del panel derecho.
+     *
+     * @param X Información del precio total.
+     * @param Y Información del impuesto.
+     */
     public void updateRightPanel(Object X, Object Y){
         getTotalPrice().setText(String.valueOf(X));
         getTaxPrice().setText(String.valueOf(Y));
@@ -197,7 +250,11 @@ public class OrderView extends JPanel {
 
 
 
-
+    /**
+     * Inicializa los componentes principales de la vista.
+     *
+     * @param ac ActionListener para los eventos de los botones.
+     */
 
 
     public void initComponents(ActionListener ac){

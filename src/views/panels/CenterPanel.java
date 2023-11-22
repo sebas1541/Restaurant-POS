@@ -7,10 +7,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+
+/**
+ * Clase CenterPanel para la creación de un panel central en una interfaz gráfica.
+ * Incluye un panel de navegación, botones y un panel de elementos (items).
+ */
 public class CenterPanel extends JPanel {
     private JPanel navigationPanel;
     private JButton hotDogButton, addButton;
     private JPanel itemsPanel;
+
+    /**
+     * Constructor que inicializa el panel central con los elementos de navegación y los items.
+     *
+     * @param ac ActionListener para manejar eventos de los botones.
+     */
 
     public CenterPanel(ActionListener ac) {
         setLayout(new BorderLayout());
@@ -20,6 +31,15 @@ public class CenterPanel extends JPanel {
         add(itemsPanel, BorderLayout.NORTH);
     }
 
+
+
+    // Métodos privados para inicializar los componentes del panel.
+
+    /**
+     * Inicializa el panel de navegación con botones y estilo.
+     *
+     * @param ac ActionListener para los eventos de los botones.
+     */
     private void initializeNavigationPanel(ActionListener ac) {
         navigationPanel = createPanelWithGridBag(new Color(216, 230, 233));
 
@@ -98,6 +118,15 @@ public class CenterPanel extends JPanel {
         return itemInfoPanel;
     }
 
+
+    /**
+     * Crea un botón con estilo personalizado.
+     *
+     * @param text Texto del botón.
+     * @param bgColor Color de fondo del botón.
+     * @param size Tamaño del botón.
+     * @return JButton creado.
+     */
     private JButton createButton(String text, Color bgColor, Dimension size) {
         JButton button = new JButton(text);
         if (bgColor != null) {
@@ -107,11 +136,27 @@ public class CenterPanel extends JPanel {
         return button;
     }
 
+    /**
+     * Crea una etiqueta (JLabel) con un estilo de fuente personalizado.
+     *
+     * @param text Texto de la etiqueta.
+     * @param font Fuente de la etiqueta.
+     * @return JLabel creada.
+     */
+
     private JLabel createLabel(String text, Font font) {
         JLabel label = new JLabel(text);
         label.setFont(font);
         return label;
     }
+
+
+    /**
+     * Crea un JPanel utilizando GridBagLayout con un color de fondo específico.
+     *
+     * @param backgroundColor Color de fondo del panel.
+     * @return JPanel creado.
+     */
 
     private JPanel createPanelWithGridBag(Color backgroundColor) {
         JPanel panel = new JPanel(new GridBagLayout());
@@ -119,6 +164,15 @@ public class CenterPanel extends JPanel {
         return panel;
     }
 
+
+    /**
+     * Añade un componente a un panel utilizando GridBagConstraints.
+     *
+     * @param panel Panel al que se añadirá el componente.
+     * @param component Componente a añadir.
+     * @param gbc Configuración de GridBagConstraints.
+     * @param gridx Posición en el eje X dentro del GridBagLayout.
+     */
     private void addToPanel(JPanel panel, Component component, GridBagConstraints gbc, int gridx) {
         gbc.gridx = gridx;
         panel.add(component, gbc);
