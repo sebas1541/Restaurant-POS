@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class CenterPanel extends JPanel {
     private JPanel navigationPanel;
-    private JButton hotDogButton, additiveButton, drinkButton, addButton;
+    private JButton hotDogButton, addButton;
     private JPanel itemsPanel;
 
     public CenterPanel(ActionListener ac) {
@@ -27,15 +27,11 @@ public class CenterPanel extends JPanel {
         gbc.insets = new Insets(20, 5, 20, 5);
 
         hotDogButton = createButton("PERROS", new Color(236, 90, 90), new Dimension(150, 58));
-        additiveButton = createButton("ADITIVOS", null, new Dimension(150, 58));
-        additiveButton.addActionListener(ac);
-        drinkButton = createButton("BEBIDAS", null, new Dimension(150, 58));
 
         this.setBackground(Color.WHITE);
         this.setBorder(BorderFactory.createEmptyBorder(0,17,0,17));
         addToPanel(navigationPanel, hotDogButton, gbc, 0);
-        addToPanel(navigationPanel, additiveButton, gbc, 1);
-        addToPanel(navigationPanel, drinkButton, gbc, 2);
+
     }
 
     private void initItems(ActionListener ac) {
@@ -43,7 +39,7 @@ public class CenterPanel extends JPanel {
         itemsPanel.setBackground(Color.WHITE);
 
         String[] hotDogs = {"CLASICO", "DOGZILLA", "MEXICANO", "COLOMBIANO", "HAWAIANO", "ITALIANO", "DESGRANADO"};
-        String[] prices = {"$16.500", "$16.500", "$15.500", "$15.500", "$15.500", "$15.500", "$15.500"};
+        String[] prices = {"$12.500", "$16.500", "$14.900", "$14.900", "$14.900", "$14.900", "$14.900"};
         String[] imagePaths = {"PerroClasico.png", "DogZilla.png", "Mexicano.png", "Colombiano.png", "Hawaiano.png", "Italiano.png", "Desgranado.png"};
 
         for (int i = 0; i < hotDogs.length; i++) {
@@ -131,7 +127,5 @@ public class CenterPanel extends JPanel {
         return addButton;
     }
 
-    public JButton getAdditiveButton() {
-        return additiveButton;
-    }
+
 }

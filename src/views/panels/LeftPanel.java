@@ -4,6 +4,7 @@ import views.ownclass.ResizeImage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class LeftPanel extends JPanel {
     private static final Color BUTTON_TEXT_COLOR = new Color(189, 189, 189);
@@ -11,23 +12,27 @@ public class LeftPanel extends JPanel {
     private static final int IMAGE_WIDTH = 30;
     private static final int IMAGE_HEIGHT = 28;
 
-    public LeftPanel() {
-        initComponents();
+    public LeftPanel(ActionListener ac) {
+        initComponents(ac);
     }
 
-    private JPanel createButtonPanel(String text, String imagePath, Color textColor) {
+    private JPanel createButtonPanel(String text, String imagePath, Color textColor, ActionListener ac) {
+
         JPanel buttonPanel = new JPanel(new BorderLayout());
         ImageIcon icon = new ImageIcon(imagePath);
         icon = new ResizeImage().resize(icon, IMAGE_WIDTH, IMAGE_HEIGHT);
         JLabel imageLabel = new JLabel(icon);
-        JLabel textLabel = new JLabel(text, SwingConstants.CENTER);
-        textLabel.setForeground(textColor);
-        textLabel.setFont(BUTTON_FONT);
-        textLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+        JButton textButton = new JButton(text);
+        Cursor pointer = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
+        textButton.addActionListener(ac);
+        textButton.setCursor(pointer);
+        textButton.setForeground(textColor);
+        textButton.setFont(BUTTON_FONT);
+        textButton.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
 
         buttonPanel.setBackground(Color.WHITE);
         buttonPanel.add(imageLabel, BorderLayout.CENTER);
-        buttonPanel.add(textLabel, BorderLayout.PAGE_END);
+        buttonPanel.add(textButton, BorderLayout.SOUTH);
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 80, 0));
 
         return buttonPanel;
@@ -38,7 +43,7 @@ public class LeftPanel extends JPanel {
         add(panel, gbc);
     }
 
-    private void initComponents(){
+    private void initComponents(ActionListener ac){
         this.setLayout(new GridBagLayout());
         setBackground(Color.WHITE);
         setPreferredSize(new Dimension(107, getHeight()));
@@ -47,10 +52,8 @@ public class LeftPanel extends JPanel {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 0, 10, 0);
 
-        add(createButtonPanel("INICIO", "src/resources/orderview/Home Button Not Clicked.png", BUTTON_TEXT_COLOR), gbc, 0);
-        add(createButtonPanel("ORDEN", "src/resources/orderview/Order Button Clicked.png", new Color(236, 90, 90)), gbc, 1);
-        add(createButtonPanel("HISTORIAL", "src/resources/orderview/OrderHistory Button Not Clicked.png", BUTTON_TEXT_COLOR), gbc, 2);
-        add(createButtonPanel("CONFIG.", "src/resources/orderview/Config Button Not Clicked.png", BUTTON_TEXT_COLOR), gbc, 3);
-
+        add(createButtonPanel("INICIO", "src/resources/orderview/Home Button Not Clicked.png", BUTTON_TEXT_COLOR, ac), gbc, 0);
+        add(createButtonPanel("ORDEN", "src/resources/orderview/Order Button Clicked.png", new Color(236, 90, 90), ac), gbc, 1);
+        add(createButtonPanel("ADMIN", "src/resources/orderview/OrderHistory Button Not Clicked.png", BUTTON_TEXT_COLOR, ac), gbc, 2);
     }
 }

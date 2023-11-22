@@ -54,7 +54,6 @@ public class  Inventory {
     }
     public void menu(int opt, int quantity){
         String nombreI="";
-        try {
             switch (opt) {
                 case 1:
                     nombreI = "Pan";
@@ -132,10 +131,6 @@ public class  Inventory {
                     nombreI = "Pepperoni";
                     break;
             }
-            modifyQuantityIngredients(nombreI, quantity);
-        }catch (NumberFormatException e){
-            e.printStackTrace();
-        }
     }
 
     public String getIngredientName(int index) {

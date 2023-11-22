@@ -4,7 +4,6 @@ package views.mainviews;
 import presenter.VerificationPresenter;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
@@ -15,7 +14,7 @@ public class View extends JFrame{
     private Login panelLogin;
     private JPanel panel;
     private OrderView orderView;
-    public View(ActionListener ac) {
+    public View(VerificationPresenter ac) {
         this.setUpFrame();
         this.initComponents(ac);
     }
@@ -23,11 +22,11 @@ public class View extends JFrame{
         JOptionPane jo = new JOptionPane();
         jo.showMessageDialog(null,mesagge,"",JOptionPane.ERROR_MESSAGE);
     }
-    public void initComponents(ActionListener ac) {
+    public void initComponents(VerificationPresenter ac) {
         addHeader(ac);
     }
     public void setUpFrame() {
-        this.setTitle("Punto de venta");
+        this.setTitle("Point of Sale Dogzilla HotDogs");
         this.setSize(1400,900);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
@@ -45,7 +44,7 @@ public class View extends JFrame{
         panel.repaint();
         repaint();
     }
-    public void createPanelMainWindow(ActionListener ac) {
+    public void createPanelMainWindow(VerificationPresenter ac) {
         setPanel();
         panelMainWindow = new MainWindow(ac);
         panel.add(panelMainWindow);
@@ -54,7 +53,7 @@ public class View extends JFrame{
         repaint();
     }
 
-    public void createPaymentPanel(ActionListener ac) {
+    public void createPaymentPanel(VerificationPresenter ac) {
         setPanel();
         paymentView = new PaymentView(ac);
         panel.add(paymentView);
@@ -63,7 +62,7 @@ public class View extends JFrame{
         repaint();
     }
 
-    public void createOrderPanel(ActionListener ac){
+    public void createOrderPanel(VerificationPresenter ac){
         setPanel();
         orderView = new OrderView(ac);
         panel.add(orderView);
@@ -73,7 +72,7 @@ public class View extends JFrame{
         repaint();
     }
 
-    public void createPanelLogin(ActionListener ac) {
+    public void createPanelLogin(VerificationPresenter ac) {
         setPanel();
         panelLogin = new Login(ac);
         panel.add(panelLogin);
@@ -82,7 +81,7 @@ public class View extends JFrame{
         repaint();
     }
 
-    private void addHeader(ActionListener ac) {
+    private void addHeader(VerificationPresenter ac) {
         panel = new JPanel();
         panel.setLayout(new BorderLayout());
         this.getContentPane().add(panel, BorderLayout.CENTER);
@@ -106,7 +105,29 @@ public class View extends JFrame{
             orderView.setVisible(false);
             remove(orderView);
         }
+        if (paymentView != null) {
+            paymentView.setVisible(false);
+            remove(paymentView);
+        }
     }
+
+    public PaymentView getPaymentView() {
+        return paymentView;
+    }
+
+    public OrderView getOrderView() {
+        return orderView;
+    }
+
+    public void updateEntirePanel(){
+        this.repaint();
+        this.revalidate();
+    }
+
+    public ViewAdministrator getPanelInfoInventory() {
+        return panelInfoInventory;
+    }
+
     public String user(){
         return panelLogin.user();
     }

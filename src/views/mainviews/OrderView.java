@@ -17,11 +17,14 @@ public class OrderView extends JPanel {
     private TopPanel topPanel;
     private LeftPanel leftPanel;
     private CenterPanel centerPanel;
+    private ImageIcon companyIcon;
     private JPanel rightPanel;
-    private JPanel rightTop, rightCenter, rightBottom, itemSelectedPanel;
+    private JPanel rightTop, rightBottom, itemSelectedPanel;
+    private JScrollPane rightCenter;
     private JLabel orderLabel, orderNumberLabel, customerLabel, customerNameLabel;
     private JLabel itemSummaryItemName, ItemSummaryItemPrice, quantityText, quantityValue;
     private JLabel subtotal, subtotalPrice, tax, taxPrice, total, totalPrice;
+    private JPanel innerPanel;
     private JButton cancel, confirm;
 
 
@@ -54,7 +57,7 @@ public class OrderView extends JPanel {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
 
-        orderLabel = new JLabel("ORDEN #");
+        orderLabel = new JLabel("ORDEN");
         orderLabel.setFont(new Font("Arial", Font.BOLD, 20));
         orderLabel.setForeground(Color.BLACK);
         gbc.gridx = 0;
@@ -62,12 +65,6 @@ public class OrderView extends JPanel {
         gbc.anchor = GridBagConstraints.WEST;
         rightTop.add(orderLabel, gbc);
 
-        orderNumberLabel = new JLabel("1234567");
-        orderNumberLabel.setFont(new Font("Arial", Font.BOLD, 20));
-        orderNumberLabel.setForeground(Color.BLACK);
-        gbc.gridx = 1;
-        gbc.anchor = GridBagConstraints.EAST;
-        rightTop.add(orderNumberLabel, gbc);
 
         customerLabel = new JLabel("CLIENTE:");
         customerLabel.setFont(new Font("Arial", Font.BOLD, 14));
@@ -84,47 +81,60 @@ public class OrderView extends JPanel {
         gbc.anchor = GridBagConstraints.EAST;
         rightTop.add(customerNameLabel, gbc);
 
-        repaint();
+        repaintPanel();
     }
 
     private void createRightCenterPanel() {
-        rightCenter = new JPanel(new GridLayout(4, 0));
+        innerPanel = new JPanel();
+        innerPanel.setLayout(new BoxLayout(innerPanel, BoxLayout.Y_AXIS));
+        innerPanel.setBackground(Color.WHITE);
+
+        rightCenter = new JScrollPane(innerPanel);
         rightCenter.setBackground(Color.WHITE);
 
-        itemSelectedPanel = new JPanel(new GridBagLayout());
-        itemSelectedPanel.setBackground(new Color(216, 230, 233));
+        repaintPanel();
+    }
+
+    public void addHotdogItem(String name, String price, String quantity) {
+        setupHotDogInfoPanel(innerPanel, name, price, quantity);
+        repaintPanel();
+    }
+
+    private void setupHotDogInfoPanel(JPanel panel, String name, String price, String quantity) {
+        JPanel hotDogPanel = new JPanel(new GridBagLayout());
+        hotDogPanel.setBackground(new Color(216, 230, 233));
+        hotDogPanel.setBorder(BorderFactory.createMatteBorder(0,0,1,0,Color.GRAY));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
 
-        itemSummaryItemName = new JLabel("CLASICO");
-        itemSummaryItemName.setFont(new Font("Arial", Font.PLAIN, 17));
+        JLabel itemName = new JLabel(name);
+        itemName.setFont(new Font("Arial", Font.PLAIN, 17));
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.WEST;
-        itemSelectedPanel.add(itemSummaryItemName, gbc);
+        hotDogPanel.add(itemName, gbc);
 
-        ItemSummaryItemPrice = new JLabel("$12.500");
-        ItemSummaryItemPrice.setFont(new Font("Arial", Font.BOLD, 26));
+        JLabel itemPrice = new JLabel(price);
+        itemPrice.setFont(new Font("Arial", Font.BOLD, 26));
         gbc.gridy = 1;
-        itemSelectedPanel.add(ItemSummaryItemPrice, gbc);
+        hotDogPanel.add(itemPrice, gbc);
 
-        quantityText = new JLabel("CANTIDAD");
+        JLabel quantityText = new JLabel("CANTIDAD");
         quantityText.setFont(new Font("Arial", Font.PLAIN, 17));
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.EAST;
-        itemSelectedPanel.add(quantityText, gbc);
+        hotDogPanel.add(quantityText, gbc);
 
-        quantityValue = new JLabel("2");
+        JLabel quantityValue = new JLabel(quantity);
         quantityValue.setFont(new Font("Arial", Font.BOLD, 26));
         gbc.gridy = 1;
         gbc.anchor = GridBagConstraints.CENTER;
-        itemSelectedPanel.add(quantityValue, gbc);
+        hotDogPanel.add(quantityValue, gbc);
 
-        rightCenter.add(itemSelectedPanel);
-
-        repaint();
+        panel.add(hotDogPanel);
     }
+
 
     public void repaintPanel() {
         this.revalidate();
@@ -132,11 +142,14 @@ public class OrderView extends JPanel {
     }
 
 
-    public void updateRightPanel(Object T){
-        System.out.println("Is EDT: " + SwingUtilities.isEventDispatchThread());
-        getTotalPrice().setText(String.valueOf(T));
-        remove(totalPrice);
+    public void updateRightPanel(Object X, Object Y){
+        getTotalPrice().setText(String.valueOf(X));
+        getTaxPrice().setText(String.valueOf(Y));
         repaintPanel();
+    }
+
+    public JLabel getTaxPrice() {
+        return taxPrice;
     }
 
 
@@ -146,18 +159,6 @@ public class OrderView extends JPanel {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
 
-        subtotal = new JLabel("SUBTOTAL");
-        subtotal.setFont(new Font("Arial", Font.PLAIN, 17));
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.anchor = GridBagConstraints.WEST;
-        rightBottom.add(subtotal, gbc);
-
-        subtotalPrice = new JLabel("$12500");
-        subtotalPrice.setFont(new Font("Arial", Font.PLAIN, 17));
-        gbc.gridx = 1;
-        gbc.anchor = GridBagConstraints.EAST;
-        rightBottom.add(subtotalPrice, gbc);
 
         tax = new JLabel("IMPUESTO AL CONSUMO 8%");
         tax.setFont(new Font("Arial", Font.PLAIN, 17));
@@ -165,7 +166,7 @@ public class OrderView extends JPanel {
         gbc.gridy = 1;
         rightBottom.add(tax, gbc);
 
-        taxPrice = new JLabel("$1320");
+        taxPrice = new JLabel("");
         taxPrice.setFont(new Font("Arial", Font.PLAIN, 17));
         gbc.gridx = 1;
         rightBottom.add(taxPrice, gbc);
@@ -174,12 +175,15 @@ public class OrderView extends JPanel {
         total.setFont(new Font("Arial", Font.PLAIN, 26));
         gbc.gridx = 0;
         gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.WEST;
         rightBottom.add(total, gbc);
 
         totalPrice = new JLabel();
-        totalPrice.setText("a");
+        totalPrice.setText("");
         totalPrice.setFont(new Font("Arial", Font.PLAIN, 26));
+        totalPrice.setBorder(BorderFactory.createEmptyBorder(0,0,0,10));
         gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.EAST;
         rightBottom.add(totalPrice, gbc);
 
         cancel = new JButton("CANCELAR");
@@ -205,7 +209,7 @@ public class OrderView extends JPanel {
 
     public void initComponents(ActionListener ac){
         topPanel = new TopPanel();
-        leftPanel = new LeftPanel();
+        leftPanel = new LeftPanel(ac);
         centerPanel = new CenterPanel(ac);
         rightPanel = new JPanel(new BorderLayout());
         initRight(ac);
